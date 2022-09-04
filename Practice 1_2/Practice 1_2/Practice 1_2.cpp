@@ -14,9 +14,9 @@ int main() {
 }
 
 void binaryOutput(uint32_t num, uint32_t pos) {
-	for (uint32_t i = 1; i <= UINT_BIT; i++)
-		if (num >> (UINT_BIT - i) == 1)
-			std::cout << i + pos - 1 + 1000000 << '\t';
+	for (uint32_t i = 0; i < UINT_BIT; i++)
+		if (num >> (UINT_BIT - 1 - i) == 1)
+			std::cout << i + pos + 1000000 << '\t';
 }
 
 void sorting(uint32_t* arr) {

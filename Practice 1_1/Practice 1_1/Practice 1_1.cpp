@@ -4,7 +4,7 @@
 void binaryOutput(uint32_t x);
 int firstOperation(uint32_t num);
 int secondOperation(uint32_t num);
-int secondOperation(uint32_t num);
+int thirdOperation(uint32_t num);
 int fourthOperation(uint32_t num);
 int fifthOperation(uint32_t num, uint32_t bitToChange);
 
@@ -28,12 +28,6 @@ int main() {
 	return 0;
 }
 
-void binaryOutput(uint32_t x) {
-	std::cout << "Result: ";
-	for (int i = 1; i <= UINT_BIT; i++)
-		std::cout << (x >> (UINT_BIT - i));
-	std::cout << std::endl;
-}
 
 int firstOperation(uint32_t num) {
 	return num | (1 << (UINT_BIT - 5) | 1 << (UINT_BIT - 7) | 1 << (UINT_BIT - 13));
@@ -54,4 +48,15 @@ int fourthOperation(uint32_t num) {
 int fifthOperation(uint32_t num, uint32_t bitToChange) {
 	uint32_t mask = 1 << (UINT_BIT - 1);
 	return num & ~(mask >> (bitToChange - 1));
+}
+
+void binaryOutput(uint32_t x) {
+	std::cout << "Result: ";
+	uint32_t  mask = (1 << (UINT_BIT - 1));
+	for (int i = 0; i < UINT_BIT; i++)
+	{
+		std::cout << ((x & mask) >> (UINT_BIT - 1 - i));
+		mask = mask >> 1;
+	}
+	std::cout << std::endl;
 }
