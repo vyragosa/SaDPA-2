@@ -17,23 +17,33 @@ int fifthOperation(uint32_t num, uint32_t bitToChange) {
 	uint32_t mask = 1 << (byteUInt - 1);
 	return num & ~(mask >> (bitToChange - 1));
 }
+void binaryOutput(uint32_t x) {
+	std::cout << "Result: ";
+	uint32_t  mask = (1 << (byteUInt - 1));
+	for (int i = 1; i <= byteUInt; i++)
+	{
+		std::cout << ((x & mask) >> (byteUInt - i));
+		mask = mask >> 1;
+	}
+	std::cout << std::endl;
+}
 
 int main() {
 	uint32_t num = 0xfa, bitToChange;
-	std::cout << "1. result: " << std::hex << std::uppercase << firstOperation(num) << std::endl;
+	binaryOutput(firstOperation(num));
 	std::cout << "Enter number: ";
 	std::cin >> num;
 	std::cout << "Your number: " << num << std::endl;
-	std::cout << "2. result: " << secondOperation(num) << std::endl;
+	binaryOutput(secondOperation(num));
 	std::cout << "Enter number: ";
 	std::cin >> num;
-	std::cout << "3. result: " << std::dec << thirdOperation(num) << std::endl;
+	binaryOutput(thirdOperation(num));
 	std::cout << "Enter number: ";
 	std::cin >> num;
-	std::cout << "4. result: " << std::dec << fourthOperation(num) << std::endl;
+	binaryOutput(fourthOperation(num));
 	std::cout << "Enter number and bit u want to change: ";
 	std::cin >> num >> bitToChange;
 	std::cout << "Your number: " << std::hex << num << std::endl;
-	std::cout << "5. result: " << fifthOperation(num, bitToChange) << std::endl;
+	binaryOutput(fifthOperation(num, bitToChange));
 	return 0;
 }
