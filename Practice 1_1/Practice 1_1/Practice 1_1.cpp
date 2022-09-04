@@ -53,8 +53,7 @@ int fifthOperation(uint32_t num, uint32_t bitToChange) {
 void binaryOutput(uint32_t x) {
 	std::cout << "Result: ";
 	uint32_t  mask = (1 << (UINT_BIT - 1));
-	for (int i = 0; i < UINT_BIT; i++)
-	{
+	for (int i = 0; i < UINT_BIT; i++) {
 		std::cout << ((x & mask) >> (UINT_BIT - 1 - i));
 		mask = mask >> 1;
 	}

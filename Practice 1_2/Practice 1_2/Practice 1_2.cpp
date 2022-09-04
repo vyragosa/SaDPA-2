@@ -14,9 +14,13 @@ int main() {
 }
 
 void binaryOutput(uint32_t num, uint32_t pos) {
-	for (uint32_t i = 0; i < UINT_BIT; i++)
-		if (num >> (UINT_BIT - 1 - i) == 1)
+	uint32_t  mask = (1 << (UINT_BIT - 1));
+	for (uint32_t i = 0; i < UINT_BIT; i++) {
+		if ((num & mask) >> (UINT_BIT - 1 - i) == 1)
 			std::cout << i + pos + 1000000 << '\t';
+		mask = mask >> 1;
+	}
+
 }
 
 void sorting(uint32_t* arr) {
