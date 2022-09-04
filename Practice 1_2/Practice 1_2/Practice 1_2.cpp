@@ -28,9 +28,8 @@ void output(uint32_t* arr, uint32_t arr_size) {
 
 int main()
 {
-	int arr_size;
+	uint32_t arr_size;
 	std::cin >> arr_size;
-	
 	uint32_t* arr = new uint32_t[size] {0};
 	sorting(arr, arr_size);
 	output(arr, arr_size);
