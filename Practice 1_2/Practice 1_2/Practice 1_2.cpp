@@ -34,7 +34,6 @@ void sorting(uint32_t* arr) {
 }
 
 void output(uint32_t* arr) {
-	uint32_t num;
 	for (int i = 0; i < SIZE; i++)
 		binaryOutput(arr[i], i * UINT_BIT);
 }
