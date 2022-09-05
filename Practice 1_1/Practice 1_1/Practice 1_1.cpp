@@ -2,11 +2,11 @@
 #define UINT_BIT (sizeof(uint32_t) * 8)
 
 void binaryOutput(uint32_t x);
-int firstOperation(uint32_t num);
-int secondOperation(uint32_t num);
-int thirdOperation(uint32_t num);
-int fourthOperation(uint32_t num);
-int fifthOperation(uint32_t num, uint32_t bitToChange);
+uint32_t firstOperation(uint32_t num);
+uint32_t secondOperation(uint32_t num);
+uint32_t thirdOperation(uint32_t num);
+uint32_t fourthOperation(uint32_t num);
+uint32_t fifthOperation(uint32_t num, uint32_t bitToChange);
 
 int main() {
 	uint32_t num = 0xfa, bitToChange;
@@ -29,23 +29,23 @@ int main() {
 }
 
 
-int firstOperation(uint32_t num) {
+uint32_t firstOperation(uint32_t num) {
 	return num | (1 << (UINT_BIT - 5) | 1 << (UINT_BIT - 7) | 1 << (UINT_BIT - 13));
 }
 
-int secondOperation(uint32_t num) {
+uint32_t secondOperation(uint32_t num) {
 	return num & ~(1 << (UINT_BIT - 1) | 1 << (UINT_BIT - 2) | 1 << (UINT_BIT - 3) | 1 << (UINT_BIT - 4));
 }
 
-int thirdOperation(uint32_t num) {
+uint32_t thirdOperation(uint32_t num) {
 	return num << 9;
 }
 
-int fourthOperation(uint32_t num) {
+uint32_t fourthOperation(uint32_t num) {
 	return num >> 7;
 }
 
-int fifthOperation(uint32_t num, uint32_t bitToChange) {
+uint32_t fifthOperation(uint32_t num, uint32_t bitToChange) {
 	uint32_t mask = 1 << (UINT_BIT - 1);
 	return num & ~(mask >> (bitToChange - 1));
 }
