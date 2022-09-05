@@ -9,7 +9,7 @@ uint32_t fourthOperation(uint32_t num);
 uint32_t fifthOperation(uint32_t num, uint32_t bitToChange);
 
 int main() {
-	uint32_t num = 0xfa, bitToChange;
+	uint32_t num = 0xe0fa4c7f, bitToChange;
 	binaryOutput(firstOperation(num));
 	std::cout << "Enter number: ";
 	std::cin >> num;
