@@ -28,7 +28,6 @@ int main() {
 	return 0;
 }
 
-
 uint32_t firstOperation(uint32_t num) {
 	return num | (1 << (UINT_BIT - 5) | 1 << (UINT_BIT - 7) | 1 << (UINT_BIT - 13));
 }

@@ -20,7 +20,6 @@ void binaryOutput(uint32_t num, uint32_t pos) {
 			std::cout << i + pos + 1000000 << '\t';
 		mask = mask >> 1;
 	}
-
 }
 
 void sorting(uint32_t* arr) {
