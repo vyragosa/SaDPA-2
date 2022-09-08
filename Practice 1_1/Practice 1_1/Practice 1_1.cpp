@@ -23,6 +23,10 @@ int main() {
 	binaryOutput(fourthOperation(num));
 	std::cout << "Enter number and bit u want to change: ";
 	std::cin >> num >> bitToChange;
+	if (bitToChange > 32 || bitToChange < 0) {
+		std::cerr << "Input Error!\n";
+		return -1;
+	}
 	std::cout << "Your number: " << std::hex << num << std::endl;
 	binaryOutput(fifthOperation(num, bitToChange));
 	return 0;

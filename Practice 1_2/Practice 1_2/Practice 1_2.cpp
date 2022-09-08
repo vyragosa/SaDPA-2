@@ -24,9 +24,16 @@ void binaryOutput(uint32_t num, uint32_t pos) {
 
 void sorting(uint32_t* arr) {
 	uint32_t num, arr_size;
+	std::cout << "Enter size of array: ";
 	std::cin >> arr_size;
+	std::cout << "Enter array:\n";
 	for (int i = 0; i < arr_size; i++) {
 		std::cin >> num;
+		if (num > 9999999 || num < 1000000) {
+			std::cerr << "The number must contain only 7 digits!\n";
+			exit(-1);
+		}
+
 		num -= 1000000;
 		arr[num / UINT_BIT] |= 1 << (UINT_BIT - (num % UINT_BIT) - 1);
 	}
