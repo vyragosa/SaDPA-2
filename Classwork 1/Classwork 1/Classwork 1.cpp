@@ -20,7 +20,7 @@ int main() {
 	readTextFile("A.txt");
 
 	addTextToFile("B.txt", 10);
-	readTextFile("B.txt");
+	readTextFile("A.txt");
 	return 0;
 }
 
