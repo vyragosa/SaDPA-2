@@ -17,10 +17,10 @@ int main() {
 		std::cout << "File not created";
 		return code;
 	}
-	readTextFile("A.txt");
+	readTextFile("B.txt");
 
 	addTextToFile("B.txt", 10);
-	readTextFile("A.txt");
+	readTextFile("B.txt");
 	return 0;
 }
 
@@ -29,8 +29,7 @@ int readTextFile(std::string nameTf) {
 	std::ifstream tf(nameTf);
 	if (!tf.good())
 		return -1;
-	while (!tf.eof()) {
-		tf >> x;
+	while (tf >> x) {
 		std::cout << x << '\t';
 	}
 	std::cout << std::endl;
