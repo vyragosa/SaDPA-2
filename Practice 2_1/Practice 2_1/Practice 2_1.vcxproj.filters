@@ -18,10 +18,18 @@
     <ClCompile Include="Practice 2_1.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
+    <ClCompile Include="fileOperations.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Text Include="A.txt" />
     <Text Include="B.txt" />
     <Text Include="C.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="fileOperations.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
