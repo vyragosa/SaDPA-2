@@ -33,11 +33,15 @@ int main() {
 }
 
 uint32_t firstOperation(uint32_t num) {
-	return num | (1 << (UINT_BIT - 5) | 1 << (UINT_BIT - 7) | 1 << (UINT_BIT - 13));
+	uint32_t mask = 1 << (UINT_BIT - 5) | 1 << (UINT_BIT - 7) | 1 << (UINT_BIT - 13);
+	//uint32_t mask = 0xA080000;
+	return num | mask;
 }
 
 uint32_t secondOperation(uint32_t num) {
-	return num & ~(1 << (UINT_BIT - 1) | 1 << (UINT_BIT - 2) | 1 << (UINT_BIT - 3) | 1 << (UINT_BIT - 4));
+	uint32_t mask = ~(1 << (UINT_BIT - 1) | 1 << (UINT_BIT - 2) | 1 << (UINT_BIT - 3) | 1 << (UINT_BIT - 4));
+	//uint32_t mask = 0xFFFFFFF;
+	return num & mask;
 }
 
 uint32_t thirdOperation(uint32_t num) {
@@ -50,6 +54,7 @@ uint32_t fourthOperation(uint32_t num) {
 
 uint32_t fifthOperation(uint32_t num, uint32_t bitToChange) {
 	uint32_t mask = 1 << (UINT_BIT - 1);
+	//uint32_t mask = 0x80000000;
 	return num & ~(mask >> (bitToChange - 1));
 }
 
