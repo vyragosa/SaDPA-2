@@ -41,14 +41,14 @@ int main() {
 			std::cin >> num;
 			code = findNByNumber(fileName, num);
 			if (code == -1)
-				std::cout << "Number not found!\n";
+				std::cout << "Number not found or ";
 			else
 				std::cout << "Index of number: " << code << std::endl;
 			break;
 		case 6:
 			code = countNInFile(fileName);
 			if (code == -1)
-				std::cout << "Number not found!\n";
+				std::cout << "Number not found or ";
 			else
 				std::cout << "Amount of numbers: " << code << std::endl;
 			break;
