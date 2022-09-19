@@ -31,7 +31,7 @@ int readTextFile(std::string nameTf) {
 		return -1;
 	while (tf >> x) {
 		std::cout << x << '\t';
-	}
+	} 
 	std::cout << std::endl;
 	tf.close();
 	return 0;
