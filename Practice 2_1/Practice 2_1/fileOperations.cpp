@@ -1,5 +1,12 @@
 #include "fileOperations.h"
 
+int fileIsOpen(std::string nameTf) {
+	std::ifstream tf(nameTf);
+	if (!tf.good())
+		return -1;
+	return 0;
+}
+
 int readTextFile(std::string nameTf) {
 	int x;
 	std::ifstream tf(nameTf);
@@ -12,11 +19,13 @@ int readTextFile(std::string nameTf) {
 	return 0;
 }
 
-int createTextFile(std::string nameItf, std::string nameOtf) {
+int createTextFilePrime(std::string nameItf, std::string nameOtf) {
 	std::ifstream itf(nameItf);
 	if (!itf.good())
 		return -1;
 	std::ofstream otf(nameOtf);
+	if (!otf.good())
+		return -1;
 	int x;
 	while (itf >> x) {
 		if (isPrime(x))
@@ -24,6 +33,22 @@ int createTextFile(std::string nameItf, std::string nameOtf) {
 	}
 	itf.close();
 	otf.close();
+	return 0;
+}
+
+int createTextFile(std::string nametf, int size) {
+	std::ofstream tf(nametf);
+	if (!tf.good())
+		return -1;
+	int x;
+	for (int i = 0; i < size; i++) {
+		int x = rand() % 100;
+		if (x % 4 == 0) {
+			tf << '\n';
+		}
+		tf << x << ' ';
+	}
+	tf.close();
 	return 0;
 }
 
@@ -48,7 +73,7 @@ int countNInFile(std::string nameTf) {
 	return cnt;
 }
 
-int foundNByNumber(std::string nameTf, int num) {
+int findNByNumber(std::string nameTf, int num) {
 	int x, cnt = 0;
 	std::ifstream tf(nameTf);
 	if (!tf.good())
