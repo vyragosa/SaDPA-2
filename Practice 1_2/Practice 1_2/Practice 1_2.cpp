@@ -35,7 +35,7 @@ void sorting(uint32_t* arr) {
 		}
 
 		num -= 1000000;
-		arr[num / UINT_BIT] |= 1 << (UINT_BIT - (num % UINT_BIT) - 1);
+		arr[num >> (sizeof(uint32_t) + 1)] |= 1 << (UINT_BIT - (num & (UINT_BIT - 1)) - 1);
 	}
 }
 
