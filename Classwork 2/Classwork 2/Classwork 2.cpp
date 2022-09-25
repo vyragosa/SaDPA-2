@@ -90,7 +90,7 @@ int directAccessToTheRecordBinFile(std::string namebf, int numRecord, book& r) {
 int main() {
 	createBinFile("TextFile1.txt", "BinFile.bin");
 	outBinFile("BinFile.bin");
-	std::cout << searchKeyInBinFile("BinFile.bin", 222);
+	std::cout << searchKeyInBinFile("BinFile.bin", 222) << std::endl;
 	book b;
 	directAccessToTheRecordBinFile("BinFile.bin", 3, b);
 	std::cout << b.isbn << std::endl;
