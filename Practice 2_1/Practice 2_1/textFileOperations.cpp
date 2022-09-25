@@ -1,4 +1,4 @@
-#include "fileOperations.h"
+#include "textFileOperations.h"
 
 int fileIsOpen(std::string nameTf) {
 	std::ifstream tf(nameTf);

@@ -139,7 +139,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="fileOperations.cpp" />
+    <ClCompile Include="textFileOperations.cpp" />
     <ClCompile Include="Practice 2_1.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -148,7 +148,7 @@
     <Text Include="C.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="fileOperations.h" />
+    <ClInclude Include="textFileOperations.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

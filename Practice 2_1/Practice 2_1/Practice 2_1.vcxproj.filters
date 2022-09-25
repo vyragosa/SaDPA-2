@@ -18,7 +18,7 @@
     <ClCompile Include="Practice 2_1.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="fileOperations.cpp">
+    <ClCompile Include="textFileOperations.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>
@@ -28,7 +28,7 @@
     <Text Include="C.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="fileOperations.h">
+    <ClInclude Include="textFileOperations.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>

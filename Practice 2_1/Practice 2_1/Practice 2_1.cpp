@@ -1,6 +1,6 @@
 ﻿#include <iostream>
 #include <fstream>
-#include "fileOperations.h"
+#include "textFileOperations.h"
 
 int main() {
 	std::string fileName, newFileName;
