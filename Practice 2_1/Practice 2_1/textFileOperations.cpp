@@ -32,7 +32,7 @@ int addTextToFile(std::string nameTf, int a) {
 	std::ofstream tf(nameTf, std::ios::app);
 	if (!tf.good())
 		return -1;
-	tf << ' ' << a;
+	tf << '\n' << a;
 	tf.close();
 	return 0;
 }

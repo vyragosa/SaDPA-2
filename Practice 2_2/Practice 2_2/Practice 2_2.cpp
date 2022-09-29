@@ -3,6 +3,7 @@
 #include "binFileOperations.h"
 
 int main() {
+	std::cout << sizeof(Patient);
 	std::string fileName, newFileName;
 	int num, code = 0, menu = 1;
 	while (menu) {
@@ -39,7 +40,9 @@ int main() {
 		case 5:
 			std::cout << "Enter position of a record: ";
 			std::cin >> num;
-			code = getRecordByPosition(fileName, num);
+			Patient patient;
+			code = getRecordByPosition(fileName, num, patient);
+			printPatient(patient);
 			break;
 		case 6:
 			std::cout << "Enter key: ";

@@ -54,23 +54,18 @@ int printBinFile(std::string binFileName) {
 		return -1;
 	Patient patient;
 
-	int len = sizeof(Patient);
-	inBinFile.read((char*)&patient, len);
-	while (!inBinFile.eof()) {
+	while (inBinFile.read((char*)&patient, patientSize))
 		printPatient(patient);
-		inBinFile.read((char*)&patient, len);
 
-	}
 	inBinFile.close();
 	return 0;
 }
 
 
-int getRecordByPosition(std::string binFileName, int recordPosition) {
+int getRecordByPosition(std::string binFileName, int recordPosition, Patient& patient) {
 	std::fstream inBinFile(binFileName, std::ios::binary | std::ios::in);
 	if (!inBinFile.good())
 		return -1;
-	Patient patient;
 
 	int offset = (recordPosition - 1) * patientSize;
 	inBinFile.seekg(offset, std::ios::beg);
@@ -79,7 +74,6 @@ int getRecordByPosition(std::string binFileName, int recordPosition) {
 
 	inBinFile.read((char*)&patient, patientSize);
 	inBinFile.close();
-	printPatient(patient);
 	inBinFile.close();
 	return 0;
 }
@@ -88,9 +82,8 @@ int replaceRecordWithLast(std::string binFileName, int key) {
 	std::fstream inOutBinFile(binFileName, std::ios::binary | std::ios::in | std::ios::out);
 	if (!inOutBinFile.good())
 		return -1;
-
-	Patient patient;
 	int cnt = 0;
+	Patient patient;
 	while (inOutBinFile.read((char*)&patient, patientSize) && patient.policyID != key)
 		cnt++;
 
@@ -109,14 +102,14 @@ int deleteRecordByID(std::string binFileName, int key) {
 		return -1;
 	Patient patient;
 
-	while (inBinFile.read((char*)&patient, patientSize)) {
+	while (inBinFile.read((char*)&patient, patientSize))
 		if (!(patient.policyID == key))
 			outTempFile.write((char*)&patient, patientSize);
-	}
+
 	inBinFile.close();
 	outTempFile.close();
 	std::remove(binFileName.c_str());
-	rename("temp.bin", binFileName.c_str());
+	std::rename("temp.bin", binFileName.c_str());
 	return 0;
 }
 
@@ -127,10 +120,10 @@ int createBinFileByDiseaseID(std::string binFileName, std::string newBinFileName
 		return -1;
 	Patient patient;
 
-	while (inBinFile.read((char*)&patient, sizeof(Patient))) {
+	while (inBinFile.read((char*)&patient, sizeof(Patient)))
 		if (patient.diseaseID == Key)
 			outNewBilFile.write((char*)&patient, patientSize);
-	}
+
 	inBinFile.close();
 	outNewBilFile.close();
 	return 0;
