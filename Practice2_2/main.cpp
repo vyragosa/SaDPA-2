@@ -3,7 +3,6 @@
 #include "binFileOperations.h"
 
 int main() {
-    std::cout << sizeof(Patient);
     std::string fileName, newFileName;
     int num, code = 0, menu = 1;
     while (menu) {
