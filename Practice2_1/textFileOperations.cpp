@@ -16,7 +16,7 @@ int createTextFile(std::string nametf, int size) {
     std::ofstream tf(nametf);
     if (!tf.good())
         return -1;
-    int x;
+
     for (int i = 0; i < size; i++) {
         int x = rand() % 100;
         //std::cin >> x;

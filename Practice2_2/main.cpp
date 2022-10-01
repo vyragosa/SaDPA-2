@@ -1,5 +1,4 @@
 #include <iostream>
-#include <fstream>
 #include "binFileOperations.h"
 
 int main() {

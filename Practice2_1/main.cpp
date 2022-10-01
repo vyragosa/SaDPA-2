@@ -1,5 +1,4 @@
 #include <iostream>
-#include <fstream>
 #include "textFileOperations.h"
 
 int main() {
@@ -13,12 +12,11 @@ int main() {
                   << "Press 4 to input new number to the end of file\n"
                   << "Press 5 to find index of number in file\n"
                   << "Press 6 to return amount of numbers in file\n"
-                  << "Press 7 to create file with prime nubers\n"
+                  << "Press 7 to create file with prime numbers\n"
                   << "Press 0 to exit program\n";
         std::cin >> menu;
 
-        switch (menu)
-        {
+        switch (menu) {
             case 1:
                 std::cout << "Enter name of your interaction file: ";
                 std::cin >> fileName;

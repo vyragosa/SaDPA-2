@@ -1,7 +1,7 @@
 #include <iostream>
 #include <fstream>
 
-int readTextFile(std::string nameTf);
+int readTextFile(const std::string& nameTf);
 int createTextFile(std::string nameItf, std::string nameOtf);
 int addTextToFile(std::string nameTf, int a);
 
@@ -24,7 +24,7 @@ int main() {
     return 0;
 }
 
-int readTextFile(std::string nameTf) {
+int readTextFile(const std::string& nameTf) {
     int x;
     std::ifstream tf(nameTf);
     if (!tf.good())

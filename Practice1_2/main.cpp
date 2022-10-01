@@ -3,24 +3,15 @@
 #define UINT_SHIFT (sizeof(uint32_t) + 1)
 #define SIZE (8999999 / UINT_BIT + 1)
 
-void binaryOutput(uint32_t num, uint32_t pos);
+
 void sorting(uint32_t* arr);
-void output(uint32_t* arr);
+void output(const uint32_t* arr);
 
 int main() {
     uint32_t* arr = new uint32_t[SIZE]{ 0 };
     sorting(arr);
     output(arr);
     return 0;
-}
-
-void binaryOutput(uint32_t num, uint32_t pos) {
-    uint32_t  mask = (1 << (UINT_BIT - 1));
-    for (uint32_t i = 0; i < UINT_BIT; i++) {
-        if ((num & mask) >> (UINT_BIT - 1 - i) == 1)
-            std::cout << i + pos + 1000000 << '\t';
-        mask = mask >> 1;
-    }
 }
 
 void sorting(uint32_t* arr) {
@@ -40,8 +31,8 @@ void sorting(uint32_t* arr) {
     }
 }
 
-void output(uint32_t* arr) {
+void output(const uint32_t* arr) {
     for (int i = 0; i < SIZE * UINT_BIT; i++)
-        if (arr[i >> UINT_SHIFT] & (UINT_BIT - (1 << (i & (UINT_BIT - 1))) - 1))
-            std::cout << i << '\n';
+        if (arr[i >> UINT_SHIFT] & 1 << (UINT_BIT- (i & (UINT_BIT - 1)) - 1))
+            std::cout << i + 1000000 << '\n';
 }
