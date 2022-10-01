@@ -103,7 +103,7 @@ int deleteRecordByID(std::string binFileName, int key) {
     Patient patient;
 
     while (inBinFile.read((char*)&patient, patientSize))
-        if (!(patient.policyID == key))
+        if (patient.policyID != key)
             outTempFile.write((char*)&patient, patientSize);
 
     inBinFile.close();
