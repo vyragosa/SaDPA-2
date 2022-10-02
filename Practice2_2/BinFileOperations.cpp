@@ -1,4 +1,5 @@
 #include "binFileOperations.h"
+#include <unistd.h>
 
 void printPatient(Patient &patient) {
 	std::cout << patient.policyID << '\t'
@@ -82,34 +83,51 @@ int replaceRecordWithLast(std::string binFileName, int key) {
 	std::fstream inOutBinFile(binFileName, std::ios::binary | std::ios::in | std::ios::out);
 	if (!inOutBinFile.good())
 		return -1;
+
+	inOutBinFile.seekg(-1 * patientSize, std::ios::end);
+	int sizeToCut = inOutBinFile.tellg();
+	inOutBinFile.seekg(std::ios::beg);
+
 	int cnt = 0;
 	Patient patient;
 	while (inOutBinFile.read((char *) &patient, patientSize) && patient.policyID != key)
 		cnt++;
 
 	inOutBinFile.seekg(-1 * patientSize, std::ios::end);
+
+
 	inOutBinFile.read((char *) &patient, patientSize);
 	inOutBinFile.seekg(cnt * patientSize, std::ios::beg);
 	inOutBinFile.write((char *) &patient, patientSize);
 
+	truncate(binFileName.c_str(), sizeToCut);
+	inOutBinFile.close();
 	return 0;
 }
 
 int deleteRecordByID(std::string binFileName, int key) {
-	std::fstream inBinFile(binFileName, std::ios::binary | std::ios::in);
-	std::ofstream outTempFile("temp.bin", std::ios::binary | std::ios::out);
-	if (!inBinFile.good() && !outTempFile.good())
+	std::fstream inOutBinFile(binFileName, std::ios::binary | std::ios::in | std::ios::out);
+
+	inOutBinFile.seekg(- 1 * patientSize, std::ios::end);
+	int sizeToCut = inOutBinFile.tellg();
+	inOutBinFile.seekg(std::ios::beg);
+
+	if (!inOutBinFile.good())
 		return -1;
 	Patient patient;
+	int cnt = 0;
 
-	while (inBinFile.read((char *) &patient, patientSize))
-		if (patient.policyID != key)
-			outTempFile.write((char *) &patient, patientSize);
+	while (inOutBinFile.read((char *) &patient, patientSize) && patient.policyID != key)
+		cnt++;
 
-	inBinFile.close();
-	outTempFile.close();
-	std::remove(binFileName.c_str());
-	std::rename("temp.bin", binFileName.c_str());
+	while (inOutBinFile.read((char *) &patient, patientSize)) {
+		inOutBinFile.seekg(- 2 * patientSize, std::ios::cur);
+		inOutBinFile.write((char *) &patient,  patientSize);
+		inOutBinFile.seekg(patientSize, std::ios::cur);
+	}
+
+	truncate(binFileName.c_str(), sizeToCut);
+	inOutBinFile.close();
 	return 0;
 }
 

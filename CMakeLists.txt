@@ -4,6 +4,7 @@ project(SaPDA_2)
 set(CMAKE_CXX_STANDARD 23)
 
 include_directories(Classwork1)
+
 add_executable (Classwork1  "Classwork1/main.cpp" )
 add_executable (Classwork2 "Classwork2/main.cpp" )
 add_executable (Practice1_1 "Practice1_1/main.cpp" )
