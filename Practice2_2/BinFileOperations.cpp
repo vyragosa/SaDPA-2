@@ -108,7 +108,7 @@ int replaceRecordWithLast(std::string binFileName, int key) {
 int deleteRecordByID(std::string binFileName, int key) {
 	std::fstream inOutBinFile(binFileName, std::ios::binary | std::ios::in | std::ios::out);
 
-	inOutBinFile.seekg(- 1 * patientSize, std::ios::end);
+	inOutBinFile.seekg(-1 * patientSize, std::ios::end);
 	int sizeToCut = inOutBinFile.tellg();
 	inOutBinFile.seekg(std::ios::beg);
 
@@ -121,8 +121,8 @@ int deleteRecordByID(std::string binFileName, int key) {
 		cnt++;
 
 	while (inOutBinFile.read((char *) &patient, patientSize)) {
-		inOutBinFile.seekg(- 2 * patientSize, std::ios::cur);
-		inOutBinFile.write((char *) &patient,  patientSize);
+		inOutBinFile.seekg(-2 * patientSize, std::ios::cur);
+		inOutBinFile.write((char *) &patient, patientSize);
 		inOutBinFile.seekg(patientSize, std::ios::cur);
 	}
 
