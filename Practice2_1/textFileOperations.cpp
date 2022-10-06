@@ -22,7 +22,7 @@ int createTextFile(std::string nametf, int size) {
 		//std::cin >> x;
 		if (x % 4 == 0)
 			tf << '\n';
-		tf << x << ' ';
+		tf << x << '\t';
 	}
 	tf.close();
 	return 0;
@@ -67,7 +67,7 @@ int findNByNumber(std::string nameTf, int num) {
 int createTextFilePrime(std::string nameItf, std::string nameOtf) {
 	std::ifstream itf(nameItf);
 	std::ofstream otf(nameOtf);
-	if (!itf.good() || !otf.good())
+	if (!itf.good() && !otf.good())
 		return -1;
 	int x;
 	while (itf >> x)

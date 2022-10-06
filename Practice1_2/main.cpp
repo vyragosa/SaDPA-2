@@ -4,7 +4,6 @@
 #define UINT_SHIFT (sizeof(uint32_t) + 1)
 #define SIZE (8999999 / UINT_BIT + 1)
 
-
 void sorting(uint32_t *arr);
 
 void output(const uint32_t *arr);
@@ -29,12 +28,12 @@ void sorting(uint32_t *arr) {
 		}
 
 		num -= 1000000;
-		arr[num >> (sizeof(uint32_t) + 1)] |= 1 << (UINT_BIT - (num & (UINT_BIT - 1)) - 1);
+		arr[num >> UINT_SHIFT] |= 1 << (num & (UINT_BIT - 1));
 	}
 }
 
 void output(const uint32_t *arr) {
 	for (int i = 0; i < SIZE * UINT_BIT; i++)
-		if (arr[i >> UINT_SHIFT] & 1 << (UINT_BIT - (i & (UINT_BIT - 1)) - 1))
+		if (arr[i >> UINT_SHIFT] & 1 << (i & (UINT_BIT - 1)))
 			std::cout << i + 1000000 << '\n';
 }

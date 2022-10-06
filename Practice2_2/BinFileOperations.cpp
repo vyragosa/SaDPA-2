@@ -75,7 +75,6 @@ int getRecordByPosition(std::string binFileName, int recordPosition, Patient &pa
 
 	inBinFile.read((char *) &patient, patientSize);
 	inBinFile.close();
-	inBinFile.close();
 	return 0;
 }
 
