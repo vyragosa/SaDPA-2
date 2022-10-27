@@ -1,5 +1,4 @@
-#ifndef BIN_FILE_OPERATIONS_H
-#define BIN_FILE_OPERATIONS_H
+#pragma once
 
 #include <iostream>
 #include <fstream>
@@ -29,5 +28,3 @@ int replaceRecordWithLast(std::string binFileName, int key);
 int deleteRecordByID(std::string binFileName, int key);
 
 int createBinFileByDiseaseID(std::string binFileName, std::string newBinFileName, int Key);
-
-#endif BIN_FILE_OPERATIONS_H
