@@ -1,5 +1,4 @@
-#ifndef TEXT_FILE_OPERATIONS_H
-#define TEXT_FILE_OPERATIONS_H
+#pragma once
 
 #include <iostream>
 #include <fstream>
@@ -17,5 +16,3 @@ int findNByNumber(std::string nameTf, int num);
 int createTextFilePrime(std::string nameItf, std::string nameOtf);
 
 bool isPrime(int num);
-
-#endif TEXT_FILE_OPERATIONS_H
