@@ -1,5 +1,5 @@
 #include "binFileOperations.h"
-#include <unistd.h>
+#include <filesystem>
 
 void printPatient(Patient &patient) {
 	std::cout << patient.policyID << '\t'
@@ -97,7 +97,7 @@ int replaceRecordWithLast(std::string binFileName, int key) {
 	inOutBinFile.seekg(cnt * patientSize, std::ios::beg);
 	inOutBinFile.write((char *) &patient, patientSize);
 
-	truncate(binFileName.c_str(), sizeToCut);
+	std::filesystem::resize_file(binFileName, sizeToCut);
 	inOutBinFile.close();
 	return 0;
 }
@@ -123,7 +123,7 @@ int deleteRecordByID(std::string binFileName, int key) {
 		inOutBinFile.seekg(patientSize, std::ios::cur);
 	}
 
-	truncate(binFileName.c_str(), sizeToCut);
+	std::filesystem::resize_file(binFileName, sizeToCut);
 	inOutBinFile.close();
 	return 0;
 }
