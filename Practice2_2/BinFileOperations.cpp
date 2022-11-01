@@ -93,8 +93,6 @@ int replaceRecordWithLast(std::string binFileName, int key) {
 		cnt++;
 
 	inOutBinFile.seekg(-1 * patientSize, std::ios::end);
-
-
 	inOutBinFile.read((char *) &patient, patientSize);
 	inOutBinFile.seekg(cnt * patientSize, std::ios::beg);
 	inOutBinFile.write((char *) &patient, patientSize);
