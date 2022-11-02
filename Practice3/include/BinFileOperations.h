@@ -12,6 +12,8 @@ struct Patient {
 
 const int patientSize = sizeof(Patient);
 
+int fillRandBinary(std::string binFileName, int cnt);
+
 void printPatient(Patient &patient);
 
 int overwriteFromTextToBinary(std::string binFileName, std::string textFileName);
@@ -28,10 +30,10 @@ int deleteRecordByID(std::string binFileName, int key);
 
 int createBinFileByDiseaseID(std::string binFileName, std::string newBinFileName, int Key);
 
-int testBinF();
-
 int sizeOfFile(std::string binFileName);
 
-int deleteRecordByAccess(std::string binFileName, int key);
+int directAccessDelete(std::string binFileName, int key);
 
-int directAcess(std::string binFileName, int recordPosition, Patient& patient);
+int directAcñess(std::string binFileName, int recordPosition, Patient& patient);
+
+int testBinF();

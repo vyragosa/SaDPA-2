@@ -2,6 +2,23 @@
 #include <filesystem>
 #include <iostream>
 
+int fillRandBinary(std::string binFileName, int cnt) {
+	std::fstream outBinFile(binFileName, std::ios::binary | std::ios::out);
+	if (!outBinFile.good())
+		return -1;
+	Patient patient;
+	for(int i = 0; i < cnt; i++) {
+		patient.policyID = rand() % 100000;
+		strncpy(patient.name, ("name" + std::to_string(i % 100)).c_str(), 20);
+		patient.diseaseID = rand() % 100000;
+		strncpy(patient.date, ("date" + std::to_string(i % 100)).c_str(), 10);
+		patient.doctorID = rand() % 100000;
+		outBinFile.write((char*)&patient, patientSize);
+	}
+	outBinFile.close();
+	return 0;
+}
+
 void printPatient(Patient &patient) {
 	std::cout << patient.policyID << '\t'
 			  << patient.name << '\t'
@@ -72,23 +89,28 @@ int getRecordByPosition(std::string binFileName, int recordPosition) {
 
 	int offset = (recordPosition) * patientSize;
 	inBinFile.seekg(offset, std::ios::beg);
-	if (inBinFile.bad())
+	if (inBinFile.eof()) {
+		inBinFile.close();
 		return -1;
+	}
 
 	inBinFile.read((char *) &patient, patientSize);
 	inBinFile.close();
 	return patient.policyID;
 }
 
-int directAcess(std::string binFileName, int recordPosition, Patient& patient) {
+int directAcñess(std::string binFileName, int recordPosition, Patient& patient) {
 	std::fstream inBinFile(binFileName, std::ios::binary | std::ios::in);
 	if (!inBinFile.good())
 		return -1;
 
 	int offset = (recordPosition) * patientSize;
 	inBinFile.seekg(offset, std::ios::beg);
-	if (inBinFile.bad())
+	if (inBinFile.eof()) {
+		inBinFile.close();
 		return -1;
+	}
+		
 
 	inBinFile.read((char*)&patient, patientSize);
 	inBinFile.close();
@@ -113,6 +135,31 @@ int replaceRecordWithLast(std::string binFileName, int key) {
 	inOutBinFile.read((char *) &patient, patientSize);
 	inOutBinFile.seekg(cnt * patientSize, std::ios::beg);
 	inOutBinFile.write((char *) &patient, patientSize);
+
+	std::filesystem::resize_file(binFileName, sizeToCut);
+	inOutBinFile.close();
+	return 0;
+}
+
+int directAccessReplace(std::string binFileName, int key) {
+	std::fstream inOutBinFile(binFileName, std::ios::binary | std::ios::in | std::ios::out);
+	if (!inOutBinFile.good())
+		return -1;
+
+	inOutBinFile.seekg(-1 * patientSize, std::ios::end);
+	int sizeToCut = inOutBinFile.tellg();
+	inOutBinFile.seekg(std::ios::beg);
+
+	Patient patient;
+
+	inOutBinFile.seekg(-1 * patientSize, std::ios::end);
+	inOutBinFile.read((char*)&patient, patientSize);
+	inOutBinFile.seekg(key * patientSize, std::ios::beg);
+	if (inOutBinFile.eof()) {
+		inOutBinFile.close();
+		return -1;
+	}
+	inOutBinFile.write((char*)&patient, patientSize);
 
 	std::filesystem::resize_file(binFileName, sizeToCut);
 	inOutBinFile.close();
@@ -145,7 +192,7 @@ int deleteRecordByID(std::string binFileName, int key) {
 	return 0;
 }
 
-int deleteRecordByAccess(std::string binFileName, int key) {
+int directAccessDelete(std::string binFileName, int key) {
 	std::fstream inOutBinFile(binFileName, std::ios::binary | std::ios::in | std::ios::out);
 
 	inOutBinFile.seekg(-1 * patientSize, std::ios::end);
@@ -159,6 +206,10 @@ int deleteRecordByAccess(std::string binFileName, int key) {
 
 
 	inOutBinFile.seekg(patientSize * (key + 1), std::ios::beg);
+	if (inOutBinFile.eof()) {
+		inOutBinFile.close();
+		return -1;
+	}
 
 	while (inOutBinFile.read((char*)&patient, patientSize)) {
 		inOutBinFile.seekg(-2 * patientSize, std::ios::cur);
@@ -187,6 +238,16 @@ int createBinFileByDiseaseID(std::string binFileName, std::string newBinFileName
 	outNewBilFile.close();
 	return 0;
 }
+
+int sizeOfFile(std::string binFileName) {
+	std::fstream inBinFile(binFileName, std::ios::binary | std::ios::in);
+	inBinFile.seekg(0, std::ios::end);
+	int size = inBinFile.tellg();
+	inBinFile.close();
+	return size / patientSize;
+}
+
+
 
 int testBinF() {
 	std::string fileName, newFileName;
@@ -251,10 +312,3 @@ int testBinF() {
 	return 0;
 }
 
-int sizeOfFile(std::string binFileName) {
-	std::fstream inBinFile(binFileName, std::ios::binary | std::ios::in);
-	inBinFile.seekg(0, std::ios::end);
-	int size = inBinFile.tellg();
-	inBinFile.close();
-	return size / patientSize;
-}

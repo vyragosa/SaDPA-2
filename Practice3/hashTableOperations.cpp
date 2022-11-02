@@ -64,6 +64,7 @@ int hashTable::remove(int key) const {
 void hashTable::rehash() {
 	tNode** tmp = table;
 	table = new tNode * [size = size * 2]{ nullptr };
+	capacity = 0;
 	for (int i = 0; i < size / 2; i++) {
 		while (tmp[i]) {
 			add(tmp[i]->key, tmp[i]->data);
