@@ -3,7 +3,7 @@
 
 hashTable::hashTable(int size) {
 	this->size = size;
-	table = new tNode * [size] {nullptr};
+	table = new tNode*[size]{nullptr};
 }
 
 int hashTable::hash(const int key) const {
@@ -20,7 +20,7 @@ int hashTable::add(int key, int data, int feature) {
 		table[index]->data = data;
 		return index;
 	}
-	table[index] = new tNode{ key, data, table[index] };
+	table[index] = new tNode{key, data, table[index]};
 	return index;
 }
 
@@ -63,7 +63,7 @@ int hashTable::remove(int key) const {
 
 void hashTable::rehash() {
 	tNode** tmp = table;
-	table = new tNode * [size = size * 2]{ nullptr };
+	table = new tNode*[size = size * 2]{nullptr};
 	capacity = 0;
 	for (int i = 0; i < size / 2; i++) {
 		while (tmp[i]) {

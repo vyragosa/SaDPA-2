@@ -7,7 +7,7 @@ int fillRandBinary(std::string binFileName, int cnt) {
 	if (!outBinFile.good())
 		return -1;
 	Patient patient;
-	for(int i = 0; i < cnt; i++) {
+	for (int i = 0; i < cnt; i++) {
 		patient.policyID = rand() % 100000;
 		strncpy(patient.name, ("name" + std::to_string(i % 100)).c_str(), 20);
 		patient.diseaseID = rand() % 100000;
@@ -19,12 +19,12 @@ int fillRandBinary(std::string binFileName, int cnt) {
 	return 0;
 }
 
-void printPatient(Patient &patient) {
+void printPatient(Patient& patient) {
 	std::cout << patient.policyID << '\t'
-			  << patient.name << '\t'
-			  << patient.diseaseID << '\t'
-			  << patient.date << '\t'
-			  << patient.doctorID << std::endl;
+		<< patient.name << '\t'
+		<< patient.diseaseID << '\t'
+		<< patient.date << '\t'
+		<< patient.doctorID << std::endl;
 }
 
 int overwriteFromTextToBinary(std::string binFileName, std::string textFileName) {
@@ -42,7 +42,7 @@ int overwriteFromTextToBinary(std::string binFileName, std::string textFileName)
 		inTextFile.getline(patient.date, 30, '\n');
 		inTextFile >> patient.doctorID;
 		inTextFile.get();
-		outBinFile.write((char *) &patient, patientSize);
+		outBinFile.write((char*)&patient, patientSize);
 	}
 	inTextFile.close();
 	outBinFile.close();
@@ -56,12 +56,12 @@ int overwriteFromBinaryToText(std::string binFileName, std::string textFileName)
 		return -1;
 	Patient patient;
 
-	while (inBinFile.read((char *) &patient, patientSize)) {
+	while (inBinFile.read((char*)&patient, patientSize)) {
 		outTextFile << patient.policyID << '\n'
-					<< patient.name << '\n'
-					<< patient.diseaseID << '\n'
-					<< patient.date << '\n'
-					<< patient.doctorID << '\n';
+			<< patient.name << '\n'
+			<< patient.diseaseID << '\n'
+			<< patient.date << '\n'
+			<< patient.doctorID << '\n';
 	}
 	return 0;
 }
@@ -73,7 +73,7 @@ int printBinFile(std::string binFileName) {
 		return -1;
 	Patient patient;
 
-	while (inBinFile.read((char *) &patient, patientSize))
+	while (inBinFile.read((char*)&patient, patientSize))
 		printPatient(patient);
 
 	inBinFile.close();
@@ -94,7 +94,7 @@ int getRecordByPosition(std::string binFileName, int recordPosition) {
 		return -1;
 	}
 
-	inBinFile.read((char *) &patient, patientSize);
+	inBinFile.read((char*)&patient, patientSize);
 	inBinFile.close();
 	return patient.policyID;
 }
@@ -110,7 +110,7 @@ int directAcñess(std::string binFileName, int recordPosition, Patient& patient) 
 		inBinFile.close();
 		return -1;
 	}
-		
+
 
 	inBinFile.read((char*)&patient, patientSize);
 	inBinFile.close();
@@ -128,13 +128,13 @@ int replaceRecordWithLast(std::string binFileName, int key) {
 
 	int cnt = 0;
 	Patient patient;
-	while (inOutBinFile.read((char *) &patient, patientSize) && patient.policyID != key)
+	while (inOutBinFile.read((char*)&patient, patientSize) && patient.policyID != key)
 		cnt++;
 
 	inOutBinFile.seekg(-1 * patientSize, std::ios::end);
-	inOutBinFile.read((char *) &patient, patientSize);
+	inOutBinFile.read((char*)&patient, patientSize);
 	inOutBinFile.seekg(cnt * patientSize, std::ios::beg);
-	inOutBinFile.write((char *) &patient, patientSize);
+	inOutBinFile.write((char*)&patient, patientSize);
 
 	std::filesystem::resize_file(binFileName, sizeToCut);
 	inOutBinFile.close();
@@ -178,12 +178,12 @@ int deleteRecordByID(std::string binFileName, int key) {
 	Patient patient;
 	int cnt = 0;
 
-	while (inOutBinFile.read((char *) &patient, patientSize) && patient.policyID != key)
+	while (inOutBinFile.read((char*)&patient, patientSize) && patient.policyID != key)
 		cnt++;
 
-	while (inOutBinFile.read((char *) &patient, patientSize)) {
+	while (inOutBinFile.read((char*)&patient, patientSize)) {
 		inOutBinFile.seekg(-2 * patientSize, std::ios::cur);
-		inOutBinFile.write((char *) &patient, patientSize);
+		inOutBinFile.write((char*)&patient, patientSize);
 		inOutBinFile.seekg(patientSize, std::ios::cur);
 	}
 
@@ -230,9 +230,9 @@ int createBinFileByDiseaseID(std::string binFileName, std::string newBinFileName
 		return -1;
 	Patient patient;
 
-	while (inBinFile.read((char *) &patient, sizeof(Patient)))
+	while (inBinFile.read((char*)&patient, sizeof(Patient)))
 		if (patient.diseaseID == Key)
-			outNewBilFile.write((char *) &patient, patientSize);
+			outNewBilFile.write((char*)&patient, patientSize);
 
 	inBinFile.close();
 	outNewBilFile.close();
@@ -246,7 +246,6 @@ int sizeOfFile(std::string binFileName) {
 	inBinFile.close();
 	return size / patientSize;
 }
-
 
 
 int testBinF() {
@@ -311,4 +310,3 @@ int testBinF() {
 	}
 	return 0;
 }
-

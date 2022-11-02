@@ -13,4 +13,3 @@ int getByKey(hashTable& hashTable, std::string name, int key);
 int testBinHashT();
 
 int testBinHashM();
-

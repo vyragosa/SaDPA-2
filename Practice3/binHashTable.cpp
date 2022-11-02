@@ -3,74 +3,74 @@
 #include <iostream>
 
 int addRecord(hashTable& table, std::string name, int pos) {
-    return table.add(getRecordByPosition(name, pos), pos);
+	return table.add(getRecordByPosition(name, pos), pos);
 }
- 
+
 int addAll(hashTable& table, std::string name) {
-    for (int i = 0; i < sizeOfFile(name); i++) {
-        addRecord(table, name, i);
-    }
-    return 0;
+	for (int i = 0; i < sizeOfFile(name); i++) {
+		addRecord(table, name, i);
+	}
+	return 0;
 }
 
 int deleteByKey(hashTable& hashTable, std::string name, int key) {
-    int number = hashTable.get(key);
-    if (number == -1)
-        return -1;
-    hashTable.remove(key);
-    return directAccessDelete(name, number);
+	int number = hashTable.get(key);
+	if (number == -1)
+		return -1;
+	hashTable.remove(key);
+	return directAccessDelete(name, number);
 }
 
 int getByKey(hashTable& hashTable, std::string name, int key) {
-    Patient patient;
-    int code = directAcñess(name, hashTable.get(key), patient);
-    if (code == -1)
-        return -1;
-    printPatient(patient);
-    return code;
+	Patient patient;
+	int code = directAcñess(name, hashTable.get(key), patient);
+	if (code == -1)
+		return -1;
+	printPatient(patient);
+	return code;
 }
 
 int testBinHashT() {
-    std::cout << "Test on small amount of data\n";
-    overwriteFromTextToBinary("B.bin", "A.txt");
-    printBinFile("B.bin");
-    hashTable table1(10);
-    addAll(table1, "B.bin");
-    table1.print();
-    std::cout << "*******************************************\n";
+	std::cout << "Test on small amount of data\n";
+	overwriteFromTextToBinary("B.bin", "A.txt");
+	printBinFile("B.bin");
+	hashTable table1(10);
+	addAll(table1, "B.bin");
+	table1.print();
+	std::cout << "*******************************************\n";
 
-    std::cout << "Test on big amount of data\n";
-    std::cout << "Filling bin file...\n";
-    fillRandBinary("B.bin", 1000000);
-   // printBinFile("B.bin");
-    hashTable table2(1000000);
-    std::cout << "Filling hash table...\n";
-    addAll(table2, "B.bin");
-    //table1.print();
+	std::cout << "Test on big amount of data\n";
+	std::cout << "Filling bin file...\n";
+	fillRandBinary("B.bin", 1000000);
+	// printBinFile("B.bin");
+	hashTable table2(1000000);
+	std::cout << "Filling hash table...\n";
+	addAll(table2, "B.bin");
+	//table1.print();
 
-    auto begin = std::chrono::high_resolution_clock::now();
-    getByKey(table2, "B.bin", getRecordByPosition("B.bin", 0));
-    auto end = std::chrono::high_resolution_clock::now();
-    std::chrono::duration<float> duration = end - begin;
-    std::cout << "Time to find first record: " << duration.count() << "ms\n";
+	auto begin = std::chrono::high_resolution_clock::now();
+	getByKey(table2, "B.bin", getRecordByPosition("B.bin", 0));
+	auto end = std::chrono::high_resolution_clock::now();
+	std::chrono::duration<float> duration = end - begin;
+	std::cout << "Time to find first record: " << duration.count() << "ms\n";
 
-    begin = std::chrono::high_resolution_clock::now();
-    getByKey(table2, "B.bin", getRecordByPosition("B.bin", 500000));
-    end = std::chrono::high_resolution_clock::now();
-    duration = end - begin;
-    std::cout << "Time to find middle record: " << duration.count() << "ms\n";
+	begin = std::chrono::high_resolution_clock::now();
+	getByKey(table2, "B.bin", getRecordByPosition("B.bin", 500000));
+	end = std::chrono::high_resolution_clock::now();
+	duration = end - begin;
+	std::cout << "Time to find middle record: " << duration.count() << "ms\n";
 
-    begin = std::chrono::high_resolution_clock::now();
-    getByKey(table2, "B.bin", getRecordByPosition("B.bin", 999999));
-    end = std::chrono::high_resolution_clock::now();
-    duration = end - begin;
-    std::cout << "Time to find last record: " << duration.count() << "ms\n";
-    
-    return 0;
+	begin = std::chrono::high_resolution_clock::now();
+	getByKey(table2, "B.bin", getRecordByPosition("B.bin", 999999));
+	end = std::chrono::high_resolution_clock::now();
+	duration = end - begin;
+	std::cout << "Time to find last record: " << duration.count() << "ms\n";
+
+	return 0;
 }
 
 int testBinHashM() {
-    hashTable table(10);
+	hashTable table(10);
 	std::string fileName, newFileName;
 	int num, code = 0, menu = 1;
 	while (menu) {
@@ -98,23 +98,23 @@ int testBinHashM() {
 			code = printBinFile(fileName);
 			break;
 		case 4:
-            std::cout << "Enter position: ";
-            std::cin >> num;
-            code = addRecord(table, fileName, num);
-            break;
-        case 5:
-            code = addAll(table, fileName);
-            break;
-        case 6:
-            std::cout << "Enter key: ";
-            std::cin >> num;
-            code = deleteByKey(table, fileName, num);
-            break;
-        case 7:
-            std::cout << "Enter key: ";
-            std::cin >> num;
-            code = getByKey(table, fileName, num);
-            break;
+			std::cout << "Enter position: ";
+			std::cin >> num;
+			code = addRecord(table, fileName, num);
+			break;
+		case 5:
+			code = addAll(table, fileName);
+			break;
+		case 6:
+			std::cout << "Enter key: ";
+			std::cin >> num;
+			code = deleteByKey(table, fileName, num);
+			break;
+		case 7:
+			std::cout << "Enter key: ";
+			std::cin >> num;
+			code = getByKey(table, fileName, num);
+			break;
 		default:
 			break;
 		}

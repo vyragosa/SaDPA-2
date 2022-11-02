@@ -14,7 +14,7 @@ const int patientSize = sizeof(Patient);
 
 int fillRandBinary(std::string binFileName, int cnt);
 
-void printPatient(Patient &patient);
+void printPatient(Patient& patient);
 
 int overwriteFromTextToBinary(std::string binFileName, std::string textFileName);
 
