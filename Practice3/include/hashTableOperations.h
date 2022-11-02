@@ -15,7 +15,7 @@ struct hashTable {
 	int add(int key, int data, int feature = 0);
 	void print() const;
 	int get(int key) const;
-	int remove(int key) const;
+	int remove(int key);
 	void rehash();
 	~hashTable();
 };

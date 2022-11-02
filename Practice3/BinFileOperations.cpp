@@ -8,11 +8,11 @@ int fillRandBinary(std::string binFileName, int cnt) {
 		return -1;
 	Patient patient;
 	for (int i = 0; i < cnt; i++) {
-		patient.policyID = rand() % 100000;
+		patient.policyID = rand() % 1000000;
 		strncpy(patient.name, ("name" + std::to_string(i % 100)).c_str(), 20);
-		patient.diseaseID = rand() % 100000;
+		patient.diseaseID = rand() % 1000000;
 		strncpy(patient.date, ("date" + std::to_string(i % 100)).c_str(), 10);
-		patient.doctorID = rand() % 100000;
+		patient.doctorID = rand() % 1000000;
 		outBinFile.write((char*)&patient, patientSize);
 	}
 	outBinFile.close();

@@ -3,7 +3,10 @@
 #include <iostream>
 
 int addRecord(hashTable& table, std::string name, int pos) {
-	return table.add(getRecordByPosition(name, pos), pos);
+	int number = getRecordByPosition(name, pos);
+	if (number == -1)
+		return -1;
+	return table.add(number, pos);
 }
 
 int addAll(hashTable& table, std::string name) {
@@ -70,9 +73,11 @@ int testBinHashT() {
 }
 
 int testBinHashM() {
-	hashTable table(10);
 	std::string fileName, newFileName;
 	int num, code = 0, menu = 1;
+	std::cout << "Enter size of hash table: ";
+	std::cin >> num;
+	hashTable table(num);
 	while (menu) {
 		std::cout << "Press 1 to choose your interaction binary file\n"
 			<< "Press 2 overwrite from text file to binary file\n"
@@ -81,7 +86,9 @@ int testBinHashM() {
 			<< "Press 5 to add single record to hash table\n"
 			<< "Press 6 delete from hash table and file\n"
 			<< "Press 7 to search in hash table\n"
+			<< "Press 8 to print hash table"
 			<< "Press 0 to exit program\n";
+			
 		std::cin >> menu;
 
 		switch (menu) {
@@ -98,12 +105,12 @@ int testBinHashM() {
 			code = printBinFile(fileName);
 			break;
 		case 4:
+			code = addAll(table, fileName);
+			break;
+		case 5:
 			std::cout << "Enter position: ";
 			std::cin >> num;
 			code = addRecord(table, fileName, num);
-			break;
-		case 5:
-			code = addAll(table, fileName);
 			break;
 		case 6:
 			std::cout << "Enter key: ";
@@ -114,6 +121,9 @@ int testBinHashM() {
 			std::cout << "Enter key: ";
 			std::cin >> num;
 			code = getByKey(table, fileName, num);
+			break;
+		case 8:
+			table.print();
 			break;
 		default:
 			break;

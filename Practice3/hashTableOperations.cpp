@@ -47,15 +47,20 @@ int hashTable::get(int key) const {
 	return -1;
 }
 
-int hashTable::remove(int key) const {
+int hashTable::remove(int key) {
 	tNode* node = table[hash(key)];
-	tNode* prev = node;
+	tNode* prev = nullptr;
 	while (node) {
 		if (node->key == key) {
-			prev->next = node->next;
+			if (!prev)
+				table[hash(key)] = node->next;
+			else
+				prev->next = node->next;
 			delete node;
+			capacity--;
 			return 0;
 		}
+		prev = node;
 		node = node->next;
 	}
 	return -1;
@@ -99,7 +104,9 @@ int testHashT() {
 			<< "Press 3 to add element to without collision\n"
 			<< "Press 4 to remove element from hash table\n"
 			<< "Press 5 to rehash hash table\n"
-			<< "Press 6 to output hash table\n";
+			<< "Press 6 to output hash table\n"
+			<< "Press 7 to get element data with key\n";
+
 		std::cin >> menu;
 
 		switch (menu) {
@@ -128,10 +135,16 @@ int testHashT() {
 			break;
 		case 5:
 			std::cout << "Rehashing...";
-			code = table.remove(num);
+			table.rehash();
 			break;
 		case 6:
 			table.print();
+			break;
+		case 7:
+			std::cout << "Enter number: ";
+			std::cin >> num;
+			code = table.get(num);
+			std::cout << "Data " << code;
 			break;
 		default:
 			break;
