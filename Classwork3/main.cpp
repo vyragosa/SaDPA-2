@@ -1,21 +1,21 @@
 #include <iostream>
 
-struct typeitem {
+struct tNode {
 	int key = 0;
 	int offset = 0;
-	bool openORclose = true;    //свободна
-	bool deleteORnot = false;   //не удалялась
+	bool isOpen = true;    //свободна
+	bool isDeleted = false;   //не удалялась
 };
 
 struct hashTable {
 	int L = 19;
-	typeitem *T;    //таблица
-	int insertedcount;  //количество вставленных ключей
-	int deletedcount;   //количество удаленных ключей
+	tNode *table;    //таблица
+	int insertedCount;  //количество вставленных ключей
+	int deletedCount;   //количество удаленных ключей
 	void createHashTable() {
-		T = new typeitem[L];
-		insertedcount = 0;
-		deletedcount = 0;
+		table = new tNode[L];
+		insertedCount = 0;
+		deletedCount = 0;
 	}
 };
 
@@ -25,13 +25,13 @@ int hash(int key, int L) {
 
 int insertInHashTable(int key, int offset, hashTable &t) {
 	int i = hash(key, t.L);
-	while (i < t.L && !t.T[i].openORclose)
+	while (i < t.L && !t.table[i].isOpen)
 		i++;
 	if (i < t.L) {
-		t.T[i].key = key;
-		t.T[i].offset = offset;
-		t.T[i].openORclose = false;
-		t.insertedcount++;
+		t.table[i].key = key;
+		t.table[i].offset = offset;
+		t.table[i].isOpen = false;
+		t.insertedCount++;
 		return 0;
 	}
 	return -1;
@@ -39,19 +39,19 @@ int insertInHashTable(int key, int offset, hashTable &t) {
 
 int search(int key, hashTable &t) {
 	int i = hash(key, t.L);
-	while (i < t.L && ((t.T[i].openORclose == false
-			&& t.T[i].deleteORnot == false)
-			|| (t.T[i].openORclose == true && t.T->deleteORnot == true))
-			&& t.T[i].key != key)
+	while (i < t.L && ((t.table[i].isOpen == false
+			&& t.table[i].isDeleted == false)
+			|| (t.table[i].isOpen == true && t.table->isDeleted == true))
+			&& t.table[i].key != key)
 		i++;
-	if (t.T[i].openORclose == true && t.T->deleteORnot == true)
+	if (t.table[i].isOpen == true && t.table->isDeleted == true)
 		return -1;
-	return t.T[i].offset;
+	return t.table[i].offset;
 }
 
 void outHashTable(hashTable t) {
 	for (int i = 0; i < t.L; ++i) {
-		std::cout << i << ' ' << t.T[i].key << ' ' << t.T[i].offset << std::endl;
+		std::cout << i << ' ' << t.table[i].key << ' ' << t.table[i].offset << std::endl;
 	}
 }
 

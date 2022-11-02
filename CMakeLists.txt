@@ -14,5 +14,6 @@ add_executable(Practice1_1 "Practice1_1/main.cpp")
 add_executable(Practice1_2 "Practice1_2/main.cpp")
 add_executable(Practice2_1 "Practice2_1/main.cpp" Practice2_1/textFileOperations.cpp)
 add_executable(Practice2_2 "Practice2_2/main.cpp" Practice2_2/binFileOperations.cpp)
+add_executable(Practice3 "Practice3/main.cpp" "Practice3/hashTableOperations.cpp" "Practice3/binFileOperations.cpp" "Practice3/binHashTable.cpp")
 
 # TODO: Добавьте тесты и целевые объекты, если это необходимо.
