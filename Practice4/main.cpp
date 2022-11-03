@@ -12,7 +12,7 @@ int main() {
 		std::cin >> menu;
 		switch (menu) {
 		case 1:
-			std::cout << "Enter size of tree";
+			std::cout << "Enter size of tree: ";
 			std::cin >> num;
 			tree = new perfectBalancedTree(num);
 			break;

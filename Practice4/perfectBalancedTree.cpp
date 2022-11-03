@@ -9,7 +9,7 @@ void perfectBalancedTree::createTree(tNode*& node, int size) {
 	if (size != 0) {
 		double x;
 		std::cin >> x;
-		node = new tNode{ x, nullptr, nullptr };
+		node = new tNode{x, nullptr, nullptr};
 		createTree(node->left, size / 2);
 		createTree(node->right, size - 1 - size / 2);
 	}
@@ -17,11 +17,12 @@ void perfectBalancedTree::createTree(tNode*& node, int size) {
 
 void perfectBalancedTree::printTree(tNode*& node, const std::string& prefix, bool isRight) {
 	if (node) {
-		printTree(node->right, prefix + (isRight ? "    " :  "|   "), true);
+		printTree(node->right, prefix + (isRight ? "    " : "|   "), true);
 		std::cout << prefix + "|--" << node->data << '\n';
 		printTree(node->left, prefix + (isRight ? "|   " : "    "), false);
 	}
 }
+
 
 void perfectBalancedTree::deleteTree(tNode*& node) {
 	if (node) {
@@ -31,20 +32,15 @@ void perfectBalancedTree::deleteTree(tNode*& node) {
 	}
 }
 
-void perfectBalancedTree::average(tNode*& node, double& sum, int& cnt) {
-	if (node) {
-		average(node->left, sum += node->data, ++cnt);
-		average(node->right, sum += node->data, ++cnt);
-	}
+double perfectBalancedTree::average(tNode*& node) {
+	if (!node)
+		return 0;
+	return node->data + average(node->left) + average(node->right);
 }
 
 void perfectBalancedTree::getAverage(tNode*& node) {
-	double sum;
-	int cnt;
-	average(node->left, sum = 0, cnt = 0);
-	std::cout << "Average of left subtree: " << sum / (double)cnt << '\n';
-	average(node->right, sum = 0, cnt = 0);
-	std::cout << "Average of right subtree: " << sum / (double)cnt << '\n';
+	std::cout << "Average of left subtree: " << average(node->left) / (double)(size / 2) << '\n';
+	std::cout << "Average of right subtree: " << average(node->right) / (double)(size - 1 - size / 2) << '\n';
 }
 
 perfectBalancedTree::~perfectBalancedTree() {
