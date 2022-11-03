@@ -17,9 +17,8 @@ void perfectBalancedTree::createTree(tNode*& node, int size) {
 
 void perfectBalancedTree::printTree(tNode*& node, const std::string& prefix, bool isRight) {
 	if (node) {
-		std::cout << prefix + (isRight ? "|--" : "L--") << node->data << '\n';
-
-		printTree(node->right, prefix + (isRight ? "|   " : "    "), true);
+		printTree(node->right, prefix + (isRight ? "    " :  "|   "), true);
+		std::cout << prefix + "|--" << node->data << '\n';
 		printTree(node->left, prefix + (isRight ? "|   " : "    "), false);
 	}
 }
