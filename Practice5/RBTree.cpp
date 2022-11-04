@@ -150,7 +150,6 @@ void RBTree::fixDeleteRBTree(tNode*& node) {
 
 			if (getColor(sibling->left) == BLACK && getColor(sibling->right) == BLACK) {
 				setColor(sibling, RED);
-				
 				ptr = parent;
 
 			}
