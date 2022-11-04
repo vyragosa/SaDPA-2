@@ -31,5 +31,7 @@ public:
 	void insertValue(int n, Patient& patient);
 	void deleteValue(int n);
 	Patient* get(tNode*& node, int data);
+	void deleteTree(tNode*& node);
+	~RBTree();
 	void printTree(tNode*& node, const std::string& prefix = "", bool isRight = false);
 };

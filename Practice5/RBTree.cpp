@@ -257,3 +257,15 @@ Patient* RBTree::get(tNode*& node, int data) {
 		return get(node->right, data);
 	return &node->ref;
 }
+
+void RBTree::deleteTree(tNode*& node) {
+	if (!node)
+		return;
+	deleteTree(node->left);
+	deleteTree(node->right);
+	delete node;
+}
+
+RBTree::~RBTree() {
+	deleteTree(root);
+}
