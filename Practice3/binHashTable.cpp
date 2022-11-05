@@ -3,7 +3,7 @@
 #include <iostream>
 
 int addRecord(hashTable& table, std::string name, int pos) {
-	int number = getRecordByPosition(name, pos);
+	int number = getPolicyByPosition(name, pos);
 	if (number == -1)
 		return -1;
 	return table.add(number, pos);
@@ -52,19 +52,19 @@ int testBinHashT() {
 	//table1.print();
 
 	auto begin = std::chrono::high_resolution_clock::now();
-	getByKey(table2, "B.bin", getRecordByPosition("B.bin", 0));
+	getByKey(table2, "B.bin", getPolicyByPosition("B.bin", 0));
 	auto end = std::chrono::high_resolution_clock::now();
 	std::chrono::duration<float> duration = end - begin;
 	std::cout << "Time to find first record: " << duration.count() << "ms\n";
 
 	begin = std::chrono::high_resolution_clock::now();
-	getByKey(table2, "B.bin", getRecordByPosition("B.bin", 500000));
+	getByKey(table2, "B.bin", getPolicyByPosition("B.bin", 500000));
 	end = std::chrono::high_resolution_clock::now();
 	duration = end - begin;
 	std::cout << "Time to find middle record: " << duration.count() << "ms\n";
 
 	begin = std::chrono::high_resolution_clock::now();
-	getByKey(table2, "B.bin", getRecordByPosition("B.bin", 999999));
+	getByKey(table2, "B.bin", getPolicyByPosition("B.bin", 999999));
 	end = std::chrono::high_resolution_clock::now();
 	duration = end - begin;
 	std::cout << "Time to find last record: " << duration.count() << "ms\n";
