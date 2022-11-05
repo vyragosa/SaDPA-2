@@ -88,7 +88,7 @@ int testBinHashM() {
 			<< "Press 7 to search in hash table\n"
 			<< "Press 8 to print hash table"
 			<< "Press 0 to exit program\n";
-			
+
 		std::cin >> menu;
 
 		switch (menu) {
