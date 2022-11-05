@@ -34,6 +34,6 @@ int sizeOfFile(std::string binFileName);
 
 int directAccessDelete(std::string binFileName, int key);
 
-int directAcñess(std::string binFileName, int recordPosition, Patient& patient);
+int directAccess(std::string binFileName, int recordPosition, Patient& patient);
 
 int testBinF();

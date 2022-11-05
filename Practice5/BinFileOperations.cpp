@@ -1,7 +1,7 @@
-#include "include/binFileOperations.h"
+#include "include/BinFileOperations.h"
 #include <filesystem>
 #include <iostream>
-
+#include <string.h>
 int fillRandBinary(std::string binFileName, int cnt) {
 	std::fstream outBinFile(binFileName, std::ios::binary | std::ios::out);
 	if (!outBinFile.good())

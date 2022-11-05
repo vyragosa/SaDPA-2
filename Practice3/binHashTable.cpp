@@ -26,7 +26,7 @@ int deleteByKey(hashTable& hashTable, std::string name, int key) {
 
 int getByKey(hashTable& hashTable, std::string name, int key) {
 	Patient patient;
-	int code = directAcñess(name, hashTable.get(key), patient);
+	int code = directAccess(name, hashTable.get(key), patient);
 	if (code == -1)
 		return -1;
 	printPatient(patient);
