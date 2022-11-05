@@ -7,8 +7,8 @@ enum Color {
 };
 
 struct tNode {
+	int key;
 	int data;
-	Patient& ref;
 	int color = RED;
 	tNode* left = nullptr;
 	tNode* right = nullptr;
@@ -28,9 +28,9 @@ class RBTree {
 public:
 	tNode* root;
 	RBTree();
-	void insertValue(int n, Patient& patient);
-	void deleteValue(int n);
-	Patient* get(tNode*& node, int data);
+	int insertValue(int n, int data);
+	int deleteValue(int n);
+	int get(tNode*& node, int key);
 	void deleteTree(tNode*& node);
 	~RBTree();
 	void printTree(tNode*& node, const std::string& prefix = "", bool isRight = false);

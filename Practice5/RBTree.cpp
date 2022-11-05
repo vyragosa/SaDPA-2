@@ -24,10 +24,10 @@ tNode *RBTree::insertBST(tNode *&node, tNode *&ptr) {
 	if (!node)
 		return ptr;
 
-	if (ptr->data < node->data) {
+	if (ptr->key < node->key) {
 		node->left = insertBST(node->left, ptr);
 		node->left->parent = node;
-	} else if (ptr->data > node->data) {
+	} else if (ptr->key > node->key) {
 		node->right = insertBST(node->right, ptr);
 		node->right->parent = node;
 	}
@@ -35,10 +35,11 @@ tNode *RBTree::insertBST(tNode *&node, tNode *&ptr) {
 	return node;
 }
 
-void RBTree::insertValue(int n, Patient &patient) {
-	tNode *node = new tNode{n, patient};
+int RBTree::insertValue(int n, int value) {
+	tNode *node = new tNode{n, value};
 	root = insertBST(root, node);
 	fixInsertRBTree(node);
+	return 0;
 }
 
 void RBTree::rotateLeft(tNode *&ptr) {
@@ -206,32 +207,33 @@ tNode *RBTree::deleteBST(tNode *&root, int data) {
 	if (!root)
 		return root;
 
-	if (data < root->data)
+	if (data < root->key)
 		return deleteBST(root->left, data);
 
-	if (data > root->data)
+	if (data > root->key)
 		return deleteBST(root->right, data);
 
 	if (root->left == nullptr || root->right == nullptr)
 		return root;
 
 	tNode *temp = minValueNode(root->right);
-	root->data = temp->data;
-	return deleteBST(root->right, temp->data);
+	root->key = temp->key;
+	return deleteBST(root->right, temp->key);
 }
 
 void RBTree::printTree(tNode *&node, const std::string &prefix, bool isRight) {
 	if (!node)
 		return;
 	printTree(node->right, prefix + (isRight ? "    " : "|   "), true);
-	std::cout << prefix + "|--" << (getColor(node) == RED ? "\033[38;5;9m" : "") << node->data
-			  << " " << node->ref.policyID << "\033[0m" << '\n';
+	std::cout << prefix + "|--" << (getColor(node) == RED ? "\033[38;5;9m" : "") << node->key
+			  << " " << node->data << "\033[0m" << '\n';
 	printTree(node->left, prefix + (isRight ? "|   " : "    "), false);
 }
 
-void RBTree::deleteValue(int data) {
+int RBTree::deleteValue(int data) {
 	tNode *node = deleteBST(root, data);
 	fixDeleteRBTree(node);
+	return 0;
 }
 
 tNode *RBTree::minValueNode(tNode *&node) {
@@ -241,14 +243,14 @@ tNode *RBTree::minValueNode(tNode *&node) {
 	return ptr;
 }
 
-Patient *RBTree::get(tNode *&node, int data) {
+int RBTree::get(tNode *&node, int data) {
 	if (node == nullptr)
-		return nullptr;
-	if (data < node->data)
+		return -1;
+	if (data < node->key)
 		return get(node->left, data);
-	if (data > node->data)
+	if (data > node->key)
 		return get(node->right, data);
-	return &node->ref;
+	return node->data;
 }
 
 void RBTree::deleteTree(tNode *&node) {
@@ -266,7 +268,7 @@ RBTree::~RBTree() {
 RBTree *generateTreeRandom(int cnt) {
 	RBTree *tree = new RBTree();
 	for (int i = 1; i <= cnt; i++) {
-		tree->insertValue(i, generatePatient(new Patient(), i));
+		tree->insertValue(i, rand());
 	}
 	return tree;
 }
@@ -293,7 +295,7 @@ int testRBTreeM() {
 			case 2:
 				std::cout << "Enter node: ";
 				std::cin >> num;
-				tree->insertValue(num, generatePatient(new Patient, num));
+				tree->insertValue(num, rand());
 				break;
 			case 3:
 				std::cout << "Enter node: ";
@@ -303,7 +305,8 @@ int testRBTreeM() {
 			case 4:
 				std::cout << "Enter node : ";
 				std::cin >> num;
-				printPatient(*tree->get(tree->root, num));
+				num = tree->get(tree->root, num);
+				std::cout << "Value: " << (num == -1 ? to_string(num) : "not found") <<'\n';
 				break;
 			case 5:
 				std::cout << "*******************************************\n";

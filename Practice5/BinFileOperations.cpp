@@ -89,7 +89,7 @@ int printBinFile(std::string binFileName) {
 }
 
 
-int getRecordByPosition(std::string binFileName, int recordPosition) {
+int getPolicyByPosition(std::string binFileName, int recordPosition) {
 	std::fstream inBinFile(binFileName, std::ios::binary | std::ios::in);
 	Patient patient;
 	if (!inBinFile.good())
@@ -105,6 +105,23 @@ int getRecordByPosition(std::string binFileName, int recordPosition) {
 	inBinFile.read((char*)&patient, patientSize);
 	inBinFile.close();
 	return patient.policyID;
+}
+
+int getRecordByPosition(std::string binFileName, int recordPosition, Patient& patient) {
+	std::fstream inBinFile(binFileName, std::ios::binary | std::ios::in);
+	if (!inBinFile.good())
+		return -1;
+
+	int offset = (recordPosition) * patientSize;
+	inBinFile.seekg(offset, std::ios::beg);
+	if (inBinFile.eof()) {
+		inBinFile.close();
+		return -1;
+	}
+
+	inBinFile.read((char*)&patient, patientSize);
+	inBinFile.close();
+	return 0;
 }
 
 int directAccess(std::string binFileName, int recordPosition, Patient& patient) {
@@ -292,7 +309,7 @@ int testBinF() {
 			case 5:
 				std::cout << "Enter position of a record: ";
 				std::cin >> num;
-				code = getRecordByPosition(fileName, num);
+				code = getPolicyByPosition(fileName, num);
 				break;
 			case 6:
 				std::cout << "Enter key: ";
