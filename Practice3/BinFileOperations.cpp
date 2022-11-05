@@ -89,7 +89,7 @@ int printBinFile(std::string binFileName) {
 }
 
 
-int getRecordByPosition(std::string binFileName, int recordPosition) {
+int getPolicyByPosition(std::string binFileName, int recordPosition) {
 	std::fstream inBinFile(binFileName, std::ios::binary | std::ios::in);
 	Patient patient;
 	if (!inBinFile.good())
@@ -292,7 +292,7 @@ int testBinF() {
 		case 5:
 			std::cout << "Enter position of a record: ";
 			std::cin >> num;
-			code = getRecordByPosition(fileName, num);
+			code = getPolicyByPosition(fileName, num);
 			break;
 		case 6:
 			std::cout << "Enter key: ";
