@@ -24,7 +24,7 @@ int overwriteFromBinaryToText(std::string binFileName, std::string textFileName)
 
 int printBinFile(std::string binFileName);
 
-int getRecordByPosition(std::string binFileName, int recordPosition);
+int getPolicyByPosition(std::string binFileName, int recordPosition);
 
 int replaceRecordWithLast(std::string binFileName, int key);
 
