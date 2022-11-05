@@ -50,7 +50,7 @@ int testBinHashT() {
 	std::cout << "Filling hash table...\n";
 	addAll(table2, "B.bin");
 	//table1.print();
-
+	std::cout << "Searching...\n";
 	auto begin = std::chrono::high_resolution_clock::now();
 	getByKey(table2, "B.bin", getPolicyByPosition("B.bin", 0));
 	auto end = std::chrono::high_resolution_clock::now();
