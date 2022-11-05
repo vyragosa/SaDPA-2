@@ -1,4 +1,5 @@
 #pragma once
+#include "BinFileOperations.h"
 #include "RBTree.h"
 
 int addRecord(RBTree& tree, std::string name, int pos);

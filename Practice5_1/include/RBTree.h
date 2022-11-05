@@ -1,6 +1,6 @@
 #pragma once
 #include <string>
-#include "BinFileOperations.h"
+
 enum Color {
 	RED = true,
 	BLACK = false,

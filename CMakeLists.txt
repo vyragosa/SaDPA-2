@@ -13,4 +13,4 @@ add_executable(Practice2_2 "Practice2_2/main.cpp" "Practice2_2/binFileOperations
 add_executable(Practice3 "Practice3/main.cpp" "Practice3/hashTableOperations.cpp" "Practice3/binFileOperations.cpp" "Practice3/binHashTable.cpp")
 add_executable(Practice4 "Practice4/main.cpp" "Practice4/perfectBalancedTree.cpp")
 add_executable(Practice5_1 "Practice5_1/main.cpp" "Practice5_1/RBTree.cpp" "Practice5_1/BinFileOperations.cpp" "Practice5_1/binRBTOperations.cpp")
-add_executable(Practice5_2 "Practice5_2/main.cpp")
+add_executable(Practice5_2 "Practice5_2/main.cpp" "Practice5_2/hashTableOperations.cpp" "Practice5_2/perfectBalancedTree.cpp" "Practice5_2/RBTree.cpp")
