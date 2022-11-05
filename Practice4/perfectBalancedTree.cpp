@@ -8,9 +8,10 @@ perfectBalancedTree::perfectBalancedTree(int _size) {
 void perfectBalancedTree::createTree(tNode*& node, int size) {
 	if (size == 0)
 		return;
-	double x;
-	std::cin >> x;
-	node = new tNode{x, nullptr, nullptr};
+	int key, data;
+	std::cin >> key >> data;
+
+	node = new tNode{key, data, nullptr, nullptr};
 	createTree(node->left, size / 2);
 	createTree(node->right, size - 1 - size / 2);
 }
@@ -19,7 +20,7 @@ void perfectBalancedTree::printTree(tNode*& node, const std::string& prefix, boo
 	if (!node)
 		return;
 	printTree(node->right, prefix + (isRight ? "    " : "|   "), true);
-	std::cout << prefix + "|--" << node->data << '\n';
+	std::cout << prefix + "|--" << node->key << " " << node->data << '\n';
 	printTree(node->left, prefix + (isRight ? "|   " : "    "), false);
 }
 
@@ -35,7 +36,7 @@ void perfectBalancedTree::deleteTree(tNode*& node) {
 double perfectBalancedTree::average(tNode*& node) {
 	if (!node)
 		return 0;
-	return node->data + average(node->left) + average(node->right);
+	return node->key + average(node->left) + average(node->right);
 }
 
 void perfectBalancedTree::getAverage(tNode*& node) {
@@ -46,3 +47,13 @@ void perfectBalancedTree::getAverage(tNode*& node) {
 perfectBalancedTree::~perfectBalancedTree() {
 	deleteTree(root);
 }
+
+int perfectBalancedTree::searchElement(tNode*& node, int key) {
+	if (node) {
+		if (key == node->key)
+			return node->data;
+		searchElement(node->left, key);
+		searchElement(node->right, key);
+	}
+}
+

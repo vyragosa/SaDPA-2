@@ -2,6 +2,13 @@
 #include "perfectBalancedTree.h"
 
 int main() {
+	perfectBalancedTree t(10);
+	std::cout << t.searchElement(t.root, 5);
+
+
+
+
+
 	int menu = 1, num;
 	perfectBalancedTree* tree;
 	while (menu) {

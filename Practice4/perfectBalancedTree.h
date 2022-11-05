@@ -1,7 +1,8 @@
 #pragma once
 
 struct tNode {
-	double data;
+	int key;
+	int data;
 	tNode* left;
 	tNode* right;
 };
@@ -16,5 +17,6 @@ public:
 	void printTree(tNode*& node, const std::string& prefix = "", bool isRight = false);
 	void deleteTree(tNode*& node);
 	void getAverage(tNode*& node);
+	int searchElement(tNode*& node, int key);
 	~perfectBalancedTree();
 };
