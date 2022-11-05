@@ -1,14 +1,9 @@
 ﻿#include <iostream>
+#include <string>
+
 #include "perfectBalancedTree.h"
 
 int main() {
-	perfectBalancedTree t(10);
-	std::cout << t.searchElement(t.root, 5);
-
-
-
-
-
 	int menu = 1, num;
 	perfectBalancedTree* tree;
 	while (menu) {
@@ -16,6 +11,7 @@ int main() {
 			<< "Press 2 print tree from root\n"
 			<< "Press 3 to get average\n"
 			<< "Press 4 to delete tree\n"
+			<< "Press 5 to search by key\n"
 			<< "Press 0 to exit program\n";
 		std::cin >> menu;
 		switch (menu) {
@@ -32,6 +28,12 @@ int main() {
 			break;
 		case 4:
 			delete tree;
+			break;
+		case 5:
+			std::cout << "Enter key: ";
+			std::cin >> num;
+			num = tree->searchElement(tree->root, num);
+			std::cout << "Data: " << (num != -1 ? std::to_string(num) : "not found") << '\n';
 			break;
 		default:
 			return 0;

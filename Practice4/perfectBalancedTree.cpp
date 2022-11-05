@@ -49,11 +49,10 @@ perfectBalancedTree::~perfectBalancedTree() {
 }
 
 int perfectBalancedTree::searchElement(tNode*& node, int key) {
-	if (node) {
-		if (key == node->key)
-			return node->data;
-		searchElement(node->left, key);
+	if (!node)
+		return -1;
+	if (key == node->key)
+		return node->data;
+	if (searchElement(node->left, key) == -1)
 		searchElement(node->right, key);
-	}
 }
-

@@ -1,7 +1,5 @@
 #include <iostream>
-#include "../Practice3/include/binHashTable.h"
-#include "../Practice4/perfectBalancedTree.h"
-#include "../Practice5_1/include/RBTree.h"
+
 
 void test1() {
 
