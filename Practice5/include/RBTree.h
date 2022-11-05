@@ -35,3 +35,7 @@ public:
 	~RBTree();
 	void printTree(tNode*& node, const std::string& prefix = "", bool isRight = false);
 };
+
+RBTree* generateTreeRandom(int cnt);
+
+int testRBTreeM();

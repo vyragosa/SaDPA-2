@@ -1,19 +1,27 @@
 #include "include/binFileOperations.h"
 #include <filesystem>
 #include <iostream>
+#include <cstring>
+
+
+Patient &generatePatient(Patient* patient, int &i) {
+	patient->policyID = rand() % 1000000;
+	strncpy(patient->name, ("name" + std::to_string(i % 100)).c_str(), 20);
+	patient->diseaseID = rand() % 1000000;
+	strncpy(patient->date, ("date" + std::to_string(i % 100)).c_str(), 10);
+	patient->doctorID = rand() % 1000000;
+	return *patient;
+}
+
 
 int fillRandBinary(std::string binFileName, int cnt) {
+	Patient patient;
 	std::fstream outBinFile(binFileName, std::ios::binary | std::ios::out);
 	if (!outBinFile.good())
 		return -1;
-	Patient patient;
+
 	for (int i = 0; i < cnt; i++) {
-		patient.policyID = rand() % 1000000;
-		strncpy(patient.name, ("name" + std::to_string(i % 100)).c_str(), 20);
-		patient.diseaseID = rand() % 1000000;
-		strncpy(patient.date, ("date" + std::to_string(i % 100)).c_str(), 10);
-		patient.doctorID = rand() % 1000000;
-		outBinFile.write((char*)&patient, patientSize);
+		outBinFile.write((char*)&generatePatient(&patient, i), patientSize);
 	}
 	outBinFile.close();
 	return 0;

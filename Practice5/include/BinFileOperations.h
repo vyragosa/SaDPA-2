@@ -12,6 +12,8 @@ struct Patient {
 
 const int patientSize = sizeof(Patient);
 
+Patient &generatePatient(Patient* patient, int &i);
+
 int fillRandBinary(std::string binFileName, int cnt);
 
 void printPatient(Patient& patient);

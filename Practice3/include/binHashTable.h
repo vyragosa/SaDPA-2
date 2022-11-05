@@ -1,6 +1,6 @@
 #pragma once
-#include "include/BinFileOperations.h"
-#include "include/hashTableOperations.h"
+#include "BinFileOperations.h"
+#include "hashTableOperations.h"
 
 int addRecord(hashTable& table, std::string name, int pos);
 
