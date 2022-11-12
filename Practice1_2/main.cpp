@@ -27,7 +27,7 @@ void sorting(uint32_t *arr) {
 			exit(-1);
 		}
 
-		num -= 1000000;
+		num %= 1000000;
 		arr[num >> UINT_SHIFT] |= 1 << (num & (UINT_BIT - 1));
 	}
 }
