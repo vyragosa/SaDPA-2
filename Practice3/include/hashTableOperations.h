@@ -1,12 +1,11 @@
 #pragma once
 
-struct tNode {
-	int key;
-	int data;
-	tNode* next;
-};
-
 struct hashTable {
+	struct tNode {
+		int key;
+		int data;
+		tNode* next;
+	};
 	int size;
 	tNode** table;
 	int capacity = 0;
