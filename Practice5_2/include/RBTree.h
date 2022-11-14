@@ -5,8 +5,8 @@ namespace BBT
 {
 	inline uint64_t c = 0;
 	enum Color {
-		RED = true,
-		BLACK = false,
+		RED,
+		BLACK,
 	};
 	struct tNode {
 		int key;
@@ -17,7 +17,7 @@ namespace BBT
 		tNode* parent = nullptr;
 	};
 	class RBTree {
-		
+		tNode* root;
 		void rotateLeft(tNode*& node);
 		void rotateRight(tNode*& node);
 		void fixInsertRBTree(tNode*& node);
@@ -27,20 +27,21 @@ namespace BBT
 		tNode* insertBST(tNode*&, tNode*&);
 		tNode* deleteBST(tNode*&, int);
 		tNode* minValueNode(tNode*& node);
+		void deleteTree(tNode*& node);
+		int get(tNode*& node, int key);
+		void printTree(tNode*& node, const std::string& prefix = "", bool isRight = false);
 	public:
-		tNode* root;
 		RBTree();
 		int insertValue(int n, int data);
 		int deleteValue(int n);
-		int get(tNode*& node, int key);
-		void deleteTree(tNode*& node);
+		int get(int key);
 		~RBTree();
-		void printTree(tNode*& node, const std::string& prefix = "", bool isRight = false);
+		void printTree();
 	};
-
-	
+	RBTree* generateTreeRandom(int cnt);
+	int testRBTreeM();
 }
 
-int testRBTreeM();
-BBT::RBTree* generateTreeRandom(int cnt);
+
+
 

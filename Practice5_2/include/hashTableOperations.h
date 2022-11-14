@@ -1,15 +1,18 @@
 #pragma once
 #include <cstdint>
 
-namespace HT {
+namespace HT
+{
 	inline uint64_t c = 0;
+
 	struct tNode {
 		int key;
 		int data;
 		tNode* next;
 	};
+
 	struct hashTable {
-		
+
 
 		int size;
 		tNode** table;
