@@ -2,10 +2,9 @@
 #include <string>
 
 enum Color {
-	RED = true,
-	BLACK = false,
+	RED,
+	BLACK,
 };
-
 struct tNode {
 	int key;
 	int data;
@@ -14,8 +13,8 @@ struct tNode {
 	tNode* right = nullptr;
 	tNode* parent = nullptr;
 };
-
 class RBTree {
+	tNode* root;
 	void rotateLeft(tNode*& node);
 	void rotateRight(tNode*& node);
 	void fixInsertRBTree(tNode*& node);
@@ -25,16 +24,18 @@ class RBTree {
 	tNode* insertBST(tNode*&, tNode*&);
 	tNode* deleteBST(tNode*&, int);
 	tNode* minValueNode(tNode*& node);
+	void deleteTree(tNode*& node);
+	int get(tNode*& node, int key);
+	void printTree(tNode*& node, const std::string& prefix = "", bool isRight = false);
 public:
-	tNode* root;
 	RBTree();
 	int insertValue(int n, int data);
 	int deleteValue(int n);
-	int get(tNode*& node, int key);
-	void deleteTree(tNode*& node);
+	int get(int key);
 	~RBTree();
-	void printTree(tNode*& node, const std::string& prefix = "", bool isRight = false);
+	void printTree();
 };
+
 
 RBTree* generateTreeRandom(int cnt);
 

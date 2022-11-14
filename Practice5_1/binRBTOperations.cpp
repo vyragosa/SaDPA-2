@@ -16,7 +16,7 @@ int addAll(RBTree& tree, std::string name) {
 }
 
 int deleteByKey(RBTree& tree, std::string name, int key) {
-	int number = tree.get(tree.root, key);
+	int number = tree.get(key);
 	if (number == -1)
 		return -1;
 	tree.deleteValue(key);
@@ -25,7 +25,7 @@ int deleteByKey(RBTree& tree, std::string name, int key) {
 
 int getByKey(RBTree& tree, std::string name, int key) {
 	Patient patient;
-	int code = directAccess(name, tree.get(tree.root, key), patient);
+	int code = directAccess(name, tree.get(key), patient);
 	if (code == -1)
 		return -1;
 	printPatient(patient);
@@ -81,7 +81,7 @@ int testBinRBT() {
 				code = getByKey(tree, fileName, num);
 				break;
 			case 8:
-				tree.printTree(tree.root);
+				tree.printTree();
 				break;
 			default:
 				break;
