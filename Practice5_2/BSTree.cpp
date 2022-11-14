@@ -1,6 +1,5 @@
 #include "include/BSTree.h"
 #include <iostream>
-using namespace BST;
 
 BSTree::BSTree() {
 	root = nullptr;
@@ -55,7 +54,7 @@ void BSTree::deleteValue(tNode*& node, int key) {
 	}
 }
 
-tNode* BSTree::minValueNode(tNode*& node) {
+BSTree::tNode* BSTree::minValueNode(tNode*& node) {
 	if (!node)
 		return nullptr;
 	if (!node->left)
@@ -64,13 +63,13 @@ tNode* BSTree::minValueNode(tNode*& node) {
 }
 
 int BSTree::get(tNode*& node, int data) {
-	c++;
+	cBST++;
 	if (!node)
 		return -1;
-	c++;
+	cBST++;
 	if (data < node->key)
 		return get(node->left, data);
-	c++;
+	cBST++;
 	if (data > node->key)
 		return get(node->right, data);
 	return node->data;
@@ -96,7 +95,7 @@ BSTree::~BSTree() {
 	deleteTree(root);
 }
 
-BSTree* BST::generateTreeRandom(int cnt) {
+BSTree* generateBSTreeRandom(int cnt) {
 	BSTree* tree = new BSTree();
 	for (int i = 1; i <= cnt; i++) {
 		tree->insertValue(i, rand());
@@ -121,7 +120,7 @@ int testBSTreeM() {
 		case 1:
 			std::cout << "Enter amount of nodes: ";
 			std::cin >> num;
-			tree = generateTreeRandom(num);
+			tree = generateBSTreeRandom(num);
 			break;
 		case 2:
 			std::cout << "Enter node: ";

@@ -27,9 +27,9 @@ int main() {
 void test(int size) {
 	std::cout << size << " elements\n";
 	std::cout << "Creating structures...\n";
-	BBT::RBTree* rbTree = new BBT::RBTree;
-	HT::hashTable* table = new HT::hashTable(size * 2);
-	BST::BSTree* bsTree = new BST::BSTree;
+	RBTree* rbTree = new RBTree;
+	hashTable* table = new hashTable(size * 2);
+	BSTree* bsTree = new BSTree;
 
 	std::cout << "Filling structures...\n";
 	for (int i = 0; i < size; i++) {
@@ -47,8 +47,8 @@ void test(int size) {
 	auto end = std::chrono::high_resolution_clock::now();
 	std::chrono::duration<float> duration = end - begin;
 	std::cout << "Time: " << duration.count() << "ms\t";
-	std::cout << "Comparisons: " << HT::c << '\n';
-	HT::c = 0;
+	std::cout << "Comparisons: " << cHT << '\n';
+	cHT = 0;
 
 	std::cout << "Binary search tree\t";
 	begin = std::chrono::high_resolution_clock::now();
@@ -56,8 +56,8 @@ void test(int size) {
 	end = std::chrono::high_resolution_clock::now();
 	duration = end - begin;
 	std::cout << "Time: " << duration.count() << "ms\t";
-	std::cout << "Comparisons: " << BST::c << '\n';
-	BST::c = 0;
+	std::cout << "Comparisons: " << cBST << '\n';
+	cBST = 0;
 
 	std::cout << "Red-black tree  \t";
 	begin = std::chrono::high_resolution_clock::now();
@@ -65,8 +65,8 @@ void test(int size) {
 	end = std::chrono::high_resolution_clock::now();
 	duration = end - begin;
 	std::cout << "Time: " << duration.count() << "ms\t";
-	std::cout << "Comparisons: " << BBT::c << '\n';
-	BBT::c = 0;
+	std::cout << "Comparisons: " << cBBT << '\n';
+	cBBT = 0;
 
 	std::cout << "********************************************************\n";
 	delete table;

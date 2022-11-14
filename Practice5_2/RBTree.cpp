@@ -2,8 +2,6 @@
 #include <windows.h>
 #include <iostream>
 
-using namespace BBT;
-
 RBTree::RBTree() {
 	root = nullptr;
 }
@@ -255,13 +253,13 @@ tNode* RBTree::minValueNode(tNode*& node) {
 }
 
 int RBTree::get(tNode*& node, int data) {
-	c++;
+	cBBT++;
 	if (node == nullptr)
 		return -1;
-	c++;
+	cBBT++;
 	if (data < node->key)
 		return get(node->left, data);
-	c++;
+	cBBT++;
 	if (data > node->key)
 		return get(node->right, data);
 	return node->data;
@@ -283,7 +281,7 @@ void RBTree::printTree() {
 	printTree(root);
 }
 
-RBTree* BBT::generateTreeRandom(int cnt) {
+RBTree* generateRBTreeRandom(int cnt) {
 	RBTree* tree = new RBTree();
 	for (int i = 1; i <= cnt; i++) {
 		tree->insertValue(i, rand());
@@ -308,7 +306,7 @@ int testRBTreeM() {
 		case 1:
 			std::cout << "Enter amount of nodes: ";
 			std::cin >> num;
-			tree = generateTreeRandom(num);
+			tree = generateRBTreeRandom(num);
 			break;
 		case 2:
 			std::cout << "Enter node: ";

@@ -1,6 +1,5 @@
 #include "include/hashTableOperations.h"
 #include <iostream>
-using namespace HT;
 
 
 hashTable::hashTable(int size) {
@@ -40,14 +39,14 @@ void hashTable::print() const {
 
 int hashTable::get(int key) const {
 	tNode* node = table[hash(key)];
-	c++;
+	cHT++;
 	while (node) {
-		c++;
+		cHT++;
 		if (node->key == key) {
 			return node->data;
 		}
 		node = node->next;
-		c++;
+		cHT++;
 	}
 	return -1;
 }
