@@ -10,7 +10,6 @@ struct hashTable {
 		int data;
 		tNode* next;
 	};
-
 	int size;
 	tNode** table;
 	int capacity = 0;

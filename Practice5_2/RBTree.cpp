@@ -18,7 +18,7 @@ void RBTree::setColor(tNode*& node, int color) {
 	node->color = color;
 }
 
-tNode* RBTree::insertBST(tNode*& node, tNode*& ptr) {
+RBTree::tNode* RBTree::insertBST(tNode*& node, tNode*& ptr) {
 	if (!node)
 		return ptr;
 	if (ptr->key < node->key) {
@@ -207,7 +207,7 @@ void RBTree::fixDeleteRBTree(tNode*& node) {
 
 }
 
-tNode* RBTree::deleteBST(tNode*& root, int data) {
+RBTree::tNode* RBTree::deleteBST(tNode*& root, int data) {
 	if (!root)
 		return root;
 
@@ -245,7 +245,7 @@ int RBTree::get(int key) {
 	return get(root, key);
 }
 
-tNode* RBTree::minValueNode(tNode*& node) {
+RBTree::tNode* RBTree::minValueNode(tNode*& node) {
 	tNode* ptr = node;
 	while (ptr->left != nullptr)
 		ptr = ptr->left;

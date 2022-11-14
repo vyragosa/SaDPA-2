@@ -2,7 +2,7 @@
 #include <string>
 
 
-inline uint64_t cBST;
+inline uint64_t cBST = 0;
 
 class BSTree {
 	struct tNode {
@@ -11,7 +11,6 @@ class BSTree {
 		tNode* left = nullptr;
 		tNode* right = nullptr;
 	};
-
 	tNode* root;
 	void deleteTree(tNode*& node);
 	tNode* minValueNode(tNode*& node);

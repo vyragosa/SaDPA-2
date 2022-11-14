@@ -4,21 +4,20 @@
 
 inline uint64_t cBBT = 0;
 
-enum Color {
-	RED,
-	BLACK,
-};
-
-struct tNode {
-	int key;
-	int data;
-	int color = RED;
-	tNode* left = nullptr;
-	tNode* right = nullptr;
-	tNode* parent = nullptr;
-};
-
 class RBTree {
+	enum Color {
+		RED,
+		BLACK,
+	};
+
+	struct tNode {
+		int key;
+		int data;
+		int color = RED;
+		tNode* left = nullptr;
+		tNode* right = nullptr;
+		tNode* parent = nullptr;
+	};
 	tNode* root;
 	void rotateLeft(tNode*& node);
 	void rotateRight(tNode*& node);
