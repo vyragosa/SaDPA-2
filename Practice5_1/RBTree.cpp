@@ -87,17 +87,17 @@ void RBTree::fixInsertRBTree(tNode*& ptr) {
 		tNode* parent = ptr->parent;
 		tNode* grandparent = parent->parent;
 		if (parent == grandparent->left) {
-			//ëåâûé äî÷åðíèé ýëåìåíò
+			//Ð»ÐµÐ²Ñ‹Ð¹ Ð´Ð¾Ñ‡ÐµÑ€Ð½Ð¸Ð¹ ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚
 			tNode* uncle = grandparent->right;
 			if (getColor(uncle) == RED) {
-				// Åñëè äÿäÿ êðàñíûé, ìåíÿåì öâåò îò âñòàâëåííîãî óçëà ââåðõ ïî öèêëó
+				// Ð•ÑÐ»Ð¸ Ð´ÑÐ´Ñ ÐºÑ€Ð°ÑÐ½Ñ‹Ð¹, Ð¼ÐµÐ½ÑÐµÐ¼ Ñ†Ð²ÐµÑ‚ Ð¾Ñ‚ Ð²ÑÑ‚Ð°Ð²Ð»ÐµÐ½Ð½Ð¾Ð³Ð¾ ÑƒÐ·Ð»Ð° Ð²Ð²ÐµÑ€Ñ… Ð¿Ð¾ Ñ†Ð¸ÐºÐ»Ñƒ
 				setColor(uncle, BLACK);
 				setColor(parent, BLACK);
 				setColor(grandparent, RED);
 				ptr = grandparent;
 			}
 			else {
-				// Åñëè äÿäÿ ÷åðíûé, òîãäà âûïîëíÿåòñÿ àëãîðèòì ïîâîðîòà îêîëî îòöà óçëà
+				// Ð•ÑÐ»Ð¸ Ð´ÑÐ´Ñ Ñ‡ÐµÑ€Ð½Ñ‹Ð¹, Ñ‚Ð¾Ð³Ð´Ð° Ð²Ñ‹Ð¿Ð¾Ð»Ð½ÑÐµÑ‚ÑÑ Ð°Ð»Ð³Ð¾Ñ€Ð¸Ñ‚Ð¼ Ð¿Ð¾Ð²Ð¾Ñ€Ð¾Ñ‚Ð° Ð¾ÐºÐ¾Ð»Ð¾ Ð¾Ñ‚Ñ†Ð° ÑƒÐ·Ð»Ð°
 				if (ptr == parent->right) {
 					rotateLeft(parent);
 					ptr = parent;
@@ -109,7 +109,7 @@ void RBTree::fixInsertRBTree(tNode*& ptr) {
 			}
 		}
 		else {
-			//ïðàâûé äî÷åðíèé ýëåìåíò. Ñèììåòðè÷íûé êîä
+			//Ð¿Ñ€Ð°Ð²Ñ‹Ð¹ Ð´Ð¾Ñ‡ÐµÑ€Ð½Ð¸Ð¹ ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚. Ð¡Ð¸Ð¼Ð¼ÐµÑ‚Ñ€Ð¸Ñ‡Ð½Ñ‹Ð¹ ÐºÐ¾Ð´
 			tNode* uncle = grandparent->left;
 			if (getColor(uncle) == RED) {
 				setColor(uncle, BLACK);
