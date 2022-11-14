@@ -1,7 +1,6 @@
 #pragma once
 #include <string>
 
-
 class RBTree {
 	enum Color {
 		RED,
