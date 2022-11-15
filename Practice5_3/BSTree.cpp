@@ -97,8 +97,8 @@ BSTree::~BSTree() {
 
 BSTree* generateBSTreeRandom(int cnt) {
 	BSTree* tree = new BSTree();
-	for (int i = 1; i <= cnt; i++) {
-		tree->insertValue(i, rand());
+	for (int i = 0; i < cnt; i++) {
+		tree->insertValue(rand(), rand());
 	}
 	return tree;
 }
@@ -136,7 +136,7 @@ int testBSTreeM() {
 			std::cout << "Enter node : ";
 			std::cin >> num;
 			num = tree->get(num);
-			std::cout << "Value: " << (num == -1 ? std::to_string(num) : "not found") << '\n';
+			std::cout << "Value: " << (num != -1 ? std::to_string(num) : "not found") << '\n';
 			break;
 		case 5:
 			std::cout << "*******************************************\n";

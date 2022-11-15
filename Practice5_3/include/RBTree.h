@@ -1,7 +1,6 @@
 #pragma once
 #include <string>
 
-
 inline uint64_t cRBT = 0;
 
 class RBTree {
@@ -9,7 +8,6 @@ class RBTree {
 		RED,
 		BLACK,
 	};
-
 	struct tNode {
 		int key;
 		int data;
@@ -21,11 +19,11 @@ class RBTree {
 	tNode* root;
 	void rotateLeft(tNode*& node);
 	void rotateRight(tNode*& node);
-	void fixInsertRBTree(tNode*& node);
-	void fixDeleteRBTree(tNode*& node);
+	void fixInsert(tNode*& node);
+	void fixDelete(tNode*& node);
 	int getColor(tNode*&);
 	void setColor(tNode*&, int);
-	tNode* insertBST(tNode*&, tNode*&);
+	tNode* insertValue(tNode*&, tNode*&);
 	tNode* deleteValue(tNode*&, int);
 	tNode* minValueNode(tNode*& node);
 	void deleteTree(tNode*& node);

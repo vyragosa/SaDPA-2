@@ -18,15 +18,15 @@ void RBTree::setColor(tNode*& node, int color) {
 	node->color = color;
 }
 
-RBTree::tNode* RBTree::insertBST(tNode*& node, tNode*& ptr) {
+RBTree::tNode* RBTree::insertValue(tNode*& node, tNode*& ptr) {
 	if (!node)
 		return ptr;
 	if (ptr->key < node->key) {
-		node->left = insertBST(node->left, ptr);
+		node->left = insertValue(node->left, ptr);
 		node->left->parent = node;
 	}
 	else if (ptr->key > node->key) {
-		node->right = insertBST(node->right, ptr);
+		node->right = insertValue(node->right, ptr);
 		node->right->parent = node;
 	}
 
@@ -35,8 +35,8 @@ RBTree::tNode* RBTree::insertBST(tNode*& node, tNode*& ptr) {
 
 int RBTree::insertValue(int n, int value) {
 	tNode* node = new tNode{n, value};
-	root = insertBST(root, node);
-	fixInsertRBTree(node);
+	root = insertValue(root, node);
+	fixInsert(node);
 	return 0;
 }
 
@@ -80,7 +80,7 @@ void RBTree::rotateRight(tNode*& ptr) {
 	ptr->parent = left_child;
 }
 
-void RBTree::fixInsertRBTree(tNode*& ptr) {
+void RBTree::fixInsert(tNode*& ptr) {
 	while (ptr != root && getColor(ptr) == RED && getColor(ptr->parent) == RED) {
 		tNode* parent = ptr->parent;
 		tNode* grandparent = parent->parent;
@@ -130,7 +130,7 @@ void RBTree::fixInsertRBTree(tNode*& ptr) {
 	setColor(root, BLACK);
 }
 
-void RBTree::fixDeleteRBTree(tNode*& node) {
+void RBTree::fixDelete(tNode*& node) {
 	if (!node)
 		return;
 	tNode* sibling;
@@ -237,7 +237,7 @@ void RBTree::printTree(tNode*& node, const std::string& prefix, bool isRight) {
 
 int RBTree::deleteValue(int data) {
 	tNode* node = deleteValue(root, data);
-	fixDeleteRBTree(node);
+	fixDelete(node);
 	return 0;
 }
 
@@ -283,8 +283,8 @@ void RBTree::printTree() {
 
 RBTree* generateRBTreeRandom(int cnt) {
 	RBTree* tree = new RBTree();
-	for (int i = 1; i <= cnt; i++) {
-		tree->insertValue(i, rand());
+	for (int i = 0; i < cnt; i++) {
+		tree->insertValue(rand(), rand());
 	}
 	return tree;
 }

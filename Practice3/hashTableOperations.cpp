@@ -2,6 +2,7 @@
 #include <iostream>
 
 hashTable::hashTable(int size) {
+	capacity = 0;
 	this->size = size;
 	table = new tNode*[size]{nullptr};
 }
@@ -105,8 +106,8 @@ int testHashT() {
 			<< "Press 4 to remove element from hash table\n"
 			<< "Press 5 to rehash hash table\n"
 			<< "Press 6 to output hash table\n"
-			<< "Press 7 to get element data with key\n";
-
+			<< "Press 7 to get element data with key\n"
+			<< "Press 0 to exit program\n";
 		std::cin >> menu;
 
 		switch (menu) {

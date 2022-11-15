@@ -1,7 +1,6 @@
 #pragma once
 #include <string>
 
-
 inline uint64_t cBST = 0;
 
 class BSTree {

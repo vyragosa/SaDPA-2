@@ -3,6 +3,7 @@
 
 
 hashTable::hashTable(int size) {
+	capacity = 0;
 	this->size = size;
 	table = new tNode*[size]{nullptr};
 }

@@ -6,8 +6,8 @@
 int main() {
 	int num;
 	std::cout << "Press 1 to test tree\n"
-		<< "Press 2 to test binary operations\n"
-		<< "Press 2 to test tree om binary file\n";
+			  << "Press 2 to test binary operations\n"
+			  << "Press 3 to test tree on binary file\n";
 	std::cin >> num;
 	switch (num) {
 		case 1:

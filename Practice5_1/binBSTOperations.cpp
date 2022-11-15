@@ -1,5 +1,6 @@
 #include <iostream>
 #include "include/binBSTOperations.h"
+#include "include/binFileOperations.h"
 #include "include/BSTree.h"
 
 int addRecord(BSTree& tree, std::string name, int pos) {
@@ -45,7 +46,7 @@ int testBinRBT() {
 				  << "Press 5 to add single record to tree\n"
 				  << "Press 6 delete from tree and file\n"
 				  << "Press 7 to search in tree\n"
-				  << "Press 8 to print tree"
+				  << "Press 8 to print tree\n"
 				  << "Press 0 to exit program\n";
 
 		std::cin >> menu;

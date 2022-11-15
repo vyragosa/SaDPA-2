@@ -1,6 +1,6 @@
 #pragma once
 
-struct hashTable {
+class hashTable {
 	struct tNode {
 		int key;
 		int data;
@@ -9,8 +9,9 @@ struct hashTable {
 	int size;
 	tNode** table;
 	int capacity = 0;
-	hashTable(int size);
 	int hash(int key) const;
+public:
+	hashTable(int size);
 	int add(int key, int data, int feature = 0);
 	void print() const;
 	int get(int key) const;

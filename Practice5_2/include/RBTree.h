@@ -1,6 +1,8 @@
 #pragma once
 #include <string>
 
+inline uint32_t rotateCount = 0;
+
 class RBTree {
 	enum Color {
 		RED,
@@ -17,8 +19,8 @@ class RBTree {
 	tNode* root;
 	void rotateLeft(tNode*& node);
 	void rotateRight(tNode*& node);
-	void fixInsertRBTree(tNode*& node);
-	void fixDeleteRBTree(tNode*& node);
+	void fixInsert(tNode*& node);
+	void fixDelete(tNode*& node);
 	int getColor(tNode*&);
 	void setColor(tNode*&, int);
 	tNode* insertValue(tNode*&, tNode*&);

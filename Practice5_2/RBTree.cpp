@@ -38,7 +38,7 @@ RBTree::tNode* RBTree::insertValue(tNode*& node, tNode*& ptr) {
 int RBTree::insertValue(int n, int value) {
 	tNode* node = new tNode{ n, value };
 	root = insertValue(root, node);
-	fixInsertRBTree(node);
+	fixInsert(node);
 	return 0;
 }
 
@@ -82,7 +82,7 @@ void RBTree::rotateRight(tNode*& ptr) {
 	ptr->parent = left_child;
 }
 
-void RBTree::fixInsertRBTree(tNode*& ptr) {
+void RBTree::fixInsert(tNode*& ptr) {
 	while (ptr != root && getColor(ptr) == RED && getColor(ptr->parent) == RED) {
 		tNode* parent = ptr->parent;
 		tNode* grandparent = parent->parent;
@@ -99,11 +99,13 @@ void RBTree::fixInsertRBTree(tNode*& ptr) {
 			else {
 				// Если дядя черный, тогда выполняется алгоритм поворота около отца узла
 				if (ptr == parent->right) {
+					rotateCount++;
 					rotateLeft(parent);
 					ptr = parent;
 					parent = ptr->parent;
 				}
 				std::swap(parent->color, grandparent->color);
+				rotateCount++;
 				rotateRight(grandparent);
 				ptr = parent;
 			}
@@ -119,11 +121,13 @@ void RBTree::fixInsertRBTree(tNode*& ptr) {
 			}
 			else {
 				if (ptr == parent->left) {
+					rotateCount++;
 					rotateRight(parent);
 					ptr = parent;
 					parent = ptr->parent;
 				}
 				std::swap(parent->color, grandparent->color);
+				rotateCount++;
 				rotateLeft(grandparent);
 				ptr = parent;
 			}
@@ -132,7 +136,7 @@ void RBTree::fixInsertRBTree(tNode*& ptr) {
 	setColor(root, BLACK);
 }
 
-void RBTree::fixDeleteRBTree(tNode*& node) {
+void RBTree::fixDelete(tNode*& node) {
 	if (!node)
 		return;
 	tNode* sibling;
@@ -219,12 +223,11 @@ RBTree::tNode* RBTree::deleteValue(tNode*& root, int data) {
 	if (data > root->key)
 		return deleteValue(root->right, data);
 
-	if (root->left && root->right)
+	if (!root->left || !root->right)
 		return root;
 
 	tNode* temp = minValueNode(root->right);
 	root->key = temp->key;
-	root->data = temp->data;
 	return deleteValue(root->right, temp->key);
 }
 
@@ -239,7 +242,7 @@ void RBTree::printTree(tNode*& node, const std::string& prefix, bool isRight) {
 
 int RBTree::deleteValue(int data) {
 	tNode* node = deleteValue(root, data);
-	fixDeleteRBTree(node);
+	fixDelete(node);
 	return 0;
 }
 
@@ -248,10 +251,11 @@ int RBTree::get(int key) {
 }
 
 RBTree::tNode* RBTree::minValueNode(tNode*& node) {
-	tNode* ptr = node;
-	while (ptr->left != nullptr)
-		ptr = ptr->left;
-	return ptr;
+	if (!node)
+		return nullptr;
+	if (!node->left)
+		return node;
+	return minValueNode(node->left);
 }
 
 int RBTree::get(tNode*& node, int data) {
@@ -283,7 +287,7 @@ void RBTree::printTree() {
 RBTree* generateTreeRandom(int cnt) {
 	RBTree* tree = new RBTree();
 	for (int i = 1; i <= cnt; i++) {
-		tree->insertValue(i, rand());
+		tree->insertValue(rand() % 100, rand());
 	}
 	return tree;
 }
@@ -321,7 +325,7 @@ int testRBTreeM() {
 			std::cout << "Enter node : ";
 			std::cin >> num;
 			num = tree->get(num);
-			std::cout << "Value: " << (num == -1 ? std::to_string(num) : "not found") << '\n';
+			std::cout << "Value: " << (num != -1 ? std::to_string(num) : "not found") << '\n';
 			break;
 		case 5:
 			std::cout << "*******************************************\n";
