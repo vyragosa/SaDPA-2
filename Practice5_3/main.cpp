@@ -40,33 +40,34 @@ void test(int size) {
 	const int key = randomValues[rand() % size];
 	std::cout << "Key: " << key << '\n';
 	std::cout << "Searching...\n";
-
 	std::cout << "Chained hash table \t";
-	auto begin = std::chrono::high_resolution_clock::now();
-	std::cout << "Data: " << table->get(key) << '\t';
+
+	int data;
+	auto start = std::chrono::high_resolution_clock::now();
+	data = table->get(key);
 	auto end = std::chrono::high_resolution_clock::now();
-	std::chrono::duration<float> duration = end - begin;
-	std::cout << "Time: " << duration.count() << "ms\t";
-	std::cout << "Comparisons: " << cHT << '\n';
+	std::cout << "Data: " << data << '\t'
+			  << "Time: " << std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count() << "ns\t"
+			  << "Comparisons: " << cHT << '\n';
 	cHT = 0;
 
-	std::cout << "Binary search tree\t";
-	begin = std::chrono::high_resolution_clock::now();
-	std::cout << "Data: " << bsTree->get(key) << '\t';
+	std::cout << "Binary search tree \t";
+	start = std::chrono::high_resolution_clock::now();
+	data = bsTree->get(key);
 	end = std::chrono::high_resolution_clock::now();
-	duration = end - begin;
-	std::cout << "Time: " << duration.count() << "ms\t";
-	std::cout << "Comparisons: " << cBST << '\n';
+	std::cout << "Data: " << data << '\t'
+			  << "Time: " << std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count() << "ns\t"
+			  << "Comparisons: " << cBST << '\n';
 	cBST = 0;
 
-	std::cout << "Red-black tree  \t";
-	begin = std::chrono::high_resolution_clock::now();
-	std::cout << "Data: " << rbTree->get(key) << '\t';
+	std::cout << "Red-black tree    \t";
+	start = std::chrono::high_resolution_clock::now();
+	data = rbTree->get(key);
 	end = std::chrono::high_resolution_clock::now();
-	duration = end - begin;
-	std::cout << "Time: " << duration.count() << "ms\t";
-	std::cout << "Comparisons: " << cBBT << '\n';
-	cBBT = 0;
+	std::cout << "Data: " << data << '\t'
+			  << "Time: " << std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count() << "ns\t"
+			  << "Comparisons: " << cRBT << '\n';
+	cRBT = 0;
 
 	std::cout << "********************************************************\n";
 	delete table;

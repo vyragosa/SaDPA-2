@@ -2,7 +2,7 @@
 #include <string>
 
 
-inline uint64_t cBBT = 0;
+inline uint64_t cRBT = 0;
 
 class RBTree {
 	enum Color {

@@ -253,13 +253,13 @@ RBTree::tNode* RBTree::minValueNode(tNode*& node) {
 }
 
 int RBTree::get(tNode*& node, int data) {
-	cBBT++;
+	cRBT++;
 	if (node == nullptr)
 		return -1;
-	cBBT++;
+	cRBT++;
 	if (data < node->key)
 		return get(node->left, data);
-	cBBT++;
+	cRBT++;
 	if (data > node->key)
 		return get(node->right, data);
 	return node->data;

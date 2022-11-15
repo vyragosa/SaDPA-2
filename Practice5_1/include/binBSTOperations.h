@@ -1,13 +1,13 @@
 #pragma once
 #include "BinFileOperations.h"
-#include "RBTree.h"
+#include "BSTree.h"
 
-int addRecord(RBTree& tree, std::string name, int pos);
+int addRecord(BSTree& tree, std::string name, int pos);
 
-int addAll(RBTree& tree, std::string name);
+int addAll(BSTree& tree, std::string name);
 
-int deleteByKey(RBTree& tree, std::string name, int key);
+int deleteByKey(BSTree& tree, std::string name, int key);
 
-int getByKey(RBTree& tree, std::string name, int key);
+int getByKey(BSTree& tree, std::string name, int key);
 
 int testBinRBT();

@@ -1,5 +1,5 @@
 #pragma once
-//pragma f
+
 #include <fstream>
 
 struct Patient {
