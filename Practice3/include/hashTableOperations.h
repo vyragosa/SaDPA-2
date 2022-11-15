@@ -8,7 +8,7 @@ class hashTable {
 	};
 	int size;
 	tNode** table;
-	int capacity = 0;
+	int capacity;
 	int hash(int key) const;
 public:
 	hashTable(int size);
