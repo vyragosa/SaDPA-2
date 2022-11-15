@@ -5,6 +5,7 @@
 #include "include/BSTree.h"
 #include "include/RBTree.h"
 #include <vector>
+#include <algorithm>
 
 inline std::vector<int> randomValues;
 
@@ -27,9 +28,9 @@ int main() {
 void test(int size) {
 	std::cout << size << " elements\n";
 	std::cout << "Creating structures...\n";
-	RBTree* rbTree = new RBTree;
-	hashTable* table = new hashTable(size * 2);
-	BSTree* bsTree = new BSTree;
+	RBTree *rbTree = new RBTree;
+	hashTable *table = new hashTable(size * 2);
+	BSTree *bsTree = new BSTree;
 
 	std::cout << "Filling structures...\n";
 	for (int i = 0; i < size; i++) {
