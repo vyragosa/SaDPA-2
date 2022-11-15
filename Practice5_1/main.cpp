@@ -1,8 +1,7 @@
 ﻿#include <iostream>
-#include "include/RBTree.h"
-#include "include/binRBTOperations.h"
+#include "include/BSTree.h"
+#include "include/binBSTOperations.h"
 #include "include/BinFileOperations.h"
-using namespace std;
 
 int main() {
 	int num;
@@ -12,7 +11,7 @@ int main() {
 	std::cin >> num;
 	switch (num) {
 		case 1:
-			return testRBTreeM();
+			return testBSTreeM();
 		case 2:
 			return testBinF();
 		case 3:

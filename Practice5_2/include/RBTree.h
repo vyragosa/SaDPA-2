@@ -1,15 +1,11 @@
 #pragma once
 #include <string>
 
-
-inline uint64_t cBBT = 0;
-
 class RBTree {
 	enum Color {
 		RED,
 		BLACK,
 	};
-
 	struct tNode {
 		int key;
 		int data;
@@ -40,5 +36,7 @@ public:
 	void printTree();
 };
 
-RBTree* generateTreeRandom(int cnt);
+
+RBTree* generateRBTreeRandom(int cnt);
+
 int testRBTreeM();
