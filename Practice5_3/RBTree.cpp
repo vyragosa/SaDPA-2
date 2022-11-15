@@ -207,15 +207,15 @@ void RBTree::fixDeleteRBTree(tNode*& node) {
 
 }
 
-RBTree::tNode* RBTree::deleteBST(tNode*& root, int data) {
+RBTree::tNode* RBTree::deleteValue(tNode*& root, int data) {
 	if (!root)
 		return root;
 
 	if (data < root->key)
-		return deleteBST(root->left, data);
+		return deleteValue(root->left, data);
 
 	if (data > root->key)
-		return deleteBST(root->right, data);
+		return deleteValue(root->right, data);
 
 	if (root->left && root->right)
 		return root;
@@ -223,7 +223,7 @@ RBTree::tNode* RBTree::deleteBST(tNode*& root, int data) {
 	tNode* temp = minValueNode(root->right);
 	root->key = temp->key;
 	root->data = temp->data;
-	return deleteBST(root->right, temp->key);
+	return deleteValue(root->right, temp->key);
 }
 
 void RBTree::printTree(tNode*& node, const std::string& prefix, bool isRight) {
@@ -236,7 +236,7 @@ void RBTree::printTree(tNode*& node, const std::string& prefix, bool isRight) {
 }
 
 int RBTree::deleteValue(int data) {
-	tNode* node = deleteBST(root, data);
+	tNode* node = deleteValue(root, data);
 	fixDeleteRBTree(node);
 	return 0;
 }

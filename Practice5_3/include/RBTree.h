@@ -26,7 +26,7 @@ class RBTree {
 	int getColor(tNode*&);
 	void setColor(tNode*&, int);
 	tNode* insertBST(tNode*&, tNode*&);
-	tNode* deleteBST(tNode*&, int);
+	tNode* deleteValue(tNode*&, int);
 	tNode* minValueNode(tNode*& node);
 	void deleteTree(tNode*& node);
 	int get(tNode*& node, int key);

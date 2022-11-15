@@ -20,15 +20,15 @@ void RBTree::setColor(tNode*& node, int color) {
 	node->color = color;
 }
 
-RBTree::tNode* RBTree::insertBST(tNode*& node, tNode*& ptr) {
+RBTree::tNode* RBTree::insertValue(tNode*& node, tNode*& ptr) {
 	if (!node)
 		return ptr;
 	if (ptr->key < node->key) {
-		node->left = insertBST(node->left, ptr);
+		node->left = insertValue(node->left, ptr);
 		node->left->parent = node;
 	}
 	else if (ptr->key > node->key) {
-		node->right = insertBST(node->right, ptr);
+		node->right = insertValue(node->right, ptr);
 		node->right->parent = node;
 	}
 
@@ -37,7 +37,7 @@ RBTree::tNode* RBTree::insertBST(tNode*& node, tNode*& ptr) {
 
 int RBTree::insertValue(int n, int value) {
 	tNode* node = new tNode{ n, value };
-	root = insertBST(root, node);
+	root = insertValue(root, node);
 	fixInsertRBTree(node);
 	return 0;
 }
@@ -209,15 +209,15 @@ void RBTree::fixDeleteRBTree(tNode*& node) {
 
 }
 
-RBTree::tNode* RBTree::deleteBST(tNode*& root, int data) {
+RBTree::tNode* RBTree::deleteValue(tNode*& root, int data) {
 	if (!root)
 		return root;
 
 	if (data < root->key)
-		return deleteBST(root->left, data);
+		return deleteValue(root->left, data);
 
 	if (data > root->key)
-		return deleteBST(root->right, data);
+		return deleteValue(root->right, data);
 
 	if (root->left && root->right)
 		return root;
@@ -225,7 +225,7 @@ RBTree::tNode* RBTree::deleteBST(tNode*& root, int data) {
 	tNode* temp = minValueNode(root->right);
 	root->key = temp->key;
 	root->data = temp->data;
-	return deleteBST(root->right, temp->key);
+	return deleteValue(root->right, temp->key);
 }
 
 void RBTree::printTree(tNode*& node, const std::string& prefix, bool isRight) {
@@ -238,7 +238,7 @@ void RBTree::printTree(tNode*& node, const std::string& prefix, bool isRight) {
 }
 
 int RBTree::deleteValue(int data) {
-	tNode* node = deleteBST(root, data);
+	tNode* node = deleteValue(root, data);
 	fixDeleteRBTree(node);
 	return 0;
 }
@@ -293,7 +293,7 @@ int testRBTreeM() {
 	int num, code = 0, menu = 1;
 	while (menu) {
 		std::cout << "Press 1 Generate tree\n"
-			<< "Press 2 insert node\n"
+			<< "Press 2 insertValue node\n"
 			<< "Press 3 delete node\n"
 			<< "Press 4 to get node\n"
 			<< "Press 5 to print tree\n"
