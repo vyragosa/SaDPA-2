@@ -13,7 +13,7 @@ struct Patient {
 
 const int patientSize = sizeof(Patient);
 
-void printPatient(Patient &patient);
+void printPatient(Patient& patient);
 
 int overwriteFromTextToBinary(std::string binFileName, std::string textFileName);
 

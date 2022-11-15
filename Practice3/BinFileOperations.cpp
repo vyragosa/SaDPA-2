@@ -4,7 +4,7 @@
 #include <cstring>
 
 
-Patient &generatePatient(Patient* patient, int &i) {
+Patient &generatePatient(Patient* patient, const int &i) {
 	patient->policyID = rand() % 1000000;
 	strncpy(patient->name, ("name" + std::to_string(i % 100)).c_str(), 20);
 	patient->diseaseID = rand() % 1000000;
