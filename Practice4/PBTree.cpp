@@ -61,13 +61,13 @@ PBTree::~PBTree() {
 }
 
 int PBTree::get(tNode*& node, int key) {
-	if (!node)
-		return -1;
-	if (key == node->key)
-		return node->data;
-	if (get(node->left, key) == -1)
-		get(node->right, key);
-	return -1;
+    if (!node)
+        return -1;
+    if (node->key == key)
+        return node->data;
+    const int left = get(node->left, key);
+    const int right = get(node->right, key);
+    return left == -1 ? right : left;
 }
 
 int testPBTreeM() {
