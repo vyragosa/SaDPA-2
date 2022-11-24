@@ -6,6 +6,7 @@
 #include <chrono>
 #include <iostream>
 #include <random>
+#include <algorithm>
 
 void test(int size) {
 	std::cout << size << " elements\n";
