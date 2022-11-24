@@ -14,6 +14,7 @@ class Graph {
 	tNode** head;
 	int size;
 	void isStronglyConnected(int v, bool visited[]);
+	int hamiltonianCycle(int v, bool visited[], int path[], int pos);
 public:
 	Graph(int size);
 	int add(int src, int dest, int weight) const;
@@ -22,7 +23,7 @@ public:
 	int remove(int src, int dest) const;
 	void resize(int size);
 	bool isStronglyConnected();
-	int minimumVertexCover() const;
+	int hamiltonianCycle(int v);
 	~Graph();
 };
 
@@ -36,6 +37,31 @@ void Graph::isStronglyConnected(int v, bool visited[]) {
 		}
 		temp = temp->next;
 	}
+}
+
+int Graph::hamiltonianCycle(int v, bool visited[], int path[], int pos) {
+	if (pos == size) {
+		if (get(path[pos - 1], path[0]) != -1) {
+			return 1;
+		}
+		else {
+			return 0;
+		}
+	}
+
+	tNode* temp = head[v];
+	while (temp != nullptr) {
+		if (!visited[temp->dest]) {
+			visited[temp->dest] = true;
+			path[pos] = temp->dest;
+			if (hamiltonianCycle(temp->dest, visited, path, pos + 1)) {
+				return 1;
+			}
+			visited[temp->dest] = false;
+		}
+		temp = temp->next;
+	}
+	return 0;
 }
 
 Graph::Graph(int size) {
@@ -117,22 +143,18 @@ bool Graph::isStronglyConnected() {
 	return true;
 }
 
-int Graph::minimumVertexCover() const {
-	int count = 0;
+int Graph::hamiltonianCycle(int v = 0) {
+	int* path = new int[size];
+	for (int i = 0; i < size; i++)
+		path[i] = -1;
+	path[0] = v;
 	bool* visited = new bool[size] {false};
-	for (int i = 0; i < size; i++) {
-		if (head[i] != nullptr && !visited[i]) {
-			visited[i] = true;
-			tNode* node = head[i];
-			while (node) {
-				visited[node->dest] = true;
-				node = node->next;
-			}
-			count++;
-		}
-	}
+	visited[v] = true;
+	int res = hamiltonianCycle(v, visited, path, 1);
 	delete[] visited;
-	return count;
+	delete[] path;
+	return res;
+	
 }
 
 
@@ -152,13 +174,10 @@ int main() {
 	Graph g(5);
 
 	g.add(2, 1, 2);
-	g.add(1, 4, 2);
-	g.add(4, 2, 1);
-	g.add(2, 3, 3);
-	g.add(3, 1, 3);
+	g.add(1, 2, 2);
 	
 	g.print();
 	std::cout << g.isStronglyConnected() << std::endl;
-	std::cout << g.minimumVertexCover() << std::endl;
+	std::cout << g.hamiltonianCycle() << std::endl;
 	return 0;
 }

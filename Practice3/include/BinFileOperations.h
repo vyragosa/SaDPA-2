@@ -38,4 +38,6 @@ int directAccessDelete(std::string binFileName, int key);
 
 int directAccess(std::string binFileName, int recordPosition, Patient& patient);
 
+int directAccessReplace(std::string binFileName, int key);
+
 int testBinF();
