@@ -2,21 +2,22 @@
 
 int *grassHoppersJumps(int N, int k, const int *path) {
 	int *coins_path = new int[N]{0};
-	int *max_array = new int[N]{0};
+	int *dynamic = new int[N];
+	dynamic[0] = 0;
 	for (int i = 1; i < N; i++) {
 		int max_value;
 		if ((i - k) > 0) max_value = i - k;
 		else max_value = 0;
 		int max_index = i;
 		for (int j = max_value; j < i; j++) {
-			if (max_array[max_value] <= max_array[j]) {
+			if (dynamic[max_value] <= dynamic[j]) {
 				max_index = j;
 			}
 		}
 		coins_path[i] = max_index;
-		max_array[i] = max_array[max_index] + path[i];
+		dynamic[i] = dynamic[max_index] + path[i];
 	}
-	delete[] max_array;
+	delete[] dynamic;
 
 	int *jumps = new int[N]{0};
 	int iter = N - 1;
@@ -29,7 +30,7 @@ int *grassHoppersJumps(int N, int k, const int *path) {
 }
 
 void print_jumps(int *array, int size) {
-	std::cout << "Jumps:\n1\t" ;
+	std::cout << "Jumps:\n1\t";
 	for (int i = size - 1; i >= 0; i--) {
 		if (array[i] != 0)
 			std::cout << array[i] + 1 << '\t';
@@ -37,7 +38,7 @@ void print_jumps(int *array, int size) {
 	std::cout << '\n';
 }
 
-int* fill_coins(int size) {
+int *fill_coins(int size) {
 	int *array = new int[size]{0};
 	for (int i = 1; i < size - 1; i++) {
 		std::cin >> array[i];
