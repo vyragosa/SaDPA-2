@@ -1,13 +1,15 @@
 #include <iostream>
 
-int *grassHoppersJumps(int N, int k, const int *path) {
+int *grass_hoppers_jumps(int N, int K, const int *path) {
 	int *coins_path = new int[N]{0};
 	int *dynamic = new int[N];
 	dynamic[0] = 0;
 	for (int i = 1; i < N; i++) {
 		int max_value;
-		if ((i - k) > 0) max_value = i - k;
-		else max_value = 0;
+		if (i - K > 0) 
+			max_value = i - K;
+		else 
+			max_value = 0;
 		int max_index = i;
 		for (int j = max_value; j < i; j++) {
 			if (dynamic[max_value] <= dynamic[j]) {
@@ -20,10 +22,10 @@ int *grassHoppersJumps(int N, int k, const int *path) {
 	delete[] dynamic;
 
 	int *jumps = new int[N]{0};
-	int iter = N - 1;
+	int iterator = N - 1;
 	for (int i = 0; i < N; i++) {
-		jumps[i] = iter;
-		iter = coins_path[iter];
+		jumps[i] = iterator;
+		iterator = coins_path[iterator];
 	}
 	delete[] coins_path;
 	return jumps;
@@ -52,7 +54,7 @@ int main() {
 	std::cin >> N >> k;
 	std::cout << "Enter coins: ";
 	int *coins = fill_coins(N);
-	int *jumps = grassHoppersJumps(N, k, coins);
+	int *jumps = grass_hoppers_jumps(N, k, coins);
 	print_jumps(jumps, N);
 	delete[] coins;
 	delete[] jumps;
