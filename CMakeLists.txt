@@ -16,4 +16,4 @@ add_executable(Practice5_1 "Practice5_1/main.cpp" "Practice5_1/BSTree.cpp" "Prac
 add_executable(Practice5_2 "Practice5_2/main.cpp" "Practice5_2/RBTree.cpp" "Practice5_2/BinFileOperations.cpp" "Practice5_2/binRBTOperations.cpp")
 add_executable(Practice5_3 "Practice5_3/main.cpp" "Practice5_3/hashTableOperations.cpp" "Practice5_3/RBTree.cpp" "Practice5_3/BSTree" "Practice5_3/speedTest.cpp")
 add_executable(Practice6 "Practice6/main.cpp")
-add_executable(Practice7 "Practice7/main.cpp")
+add_executable(Practice7 "Practice7/main.cpp" "Practice7/grassHopper.cpp")
