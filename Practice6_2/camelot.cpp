@@ -70,6 +70,7 @@ int tournament() {
 		kingDir[i] = new int[TABLE_SIZE + 1];
 		knightDir[i] = new int[TABLE_SIZE + 1];
 	}
+
 	move(kingDir, kingMovements);
 	move(knightDir, knightMovements);
 	floyd(kingDir);

@@ -3,18 +3,6 @@
 #include <iostream>
 
 
-void Graph::isStronglyConnected(int v, bool visited[]) {
-	tNode* temp = head[v];
-
-	while (temp != nullptr) {
-		if (!visited[temp->dest] && temp->dest != v) {
-			visited[temp->dest] = true;
-			isStronglyConnected(temp->dest, visited);
-		}
-		temp = temp->next;
-	}
-}
-
 Graph::Graph(int size) {
 	this->size = size;
 	head = new tNode*[size]{nullptr};
@@ -78,6 +66,18 @@ void Graph::resize(int size) {
 	this->size = size;
 }
 
+void Graph::isStronglyConnected(int v, bool visited[]) {
+	tNode* temp = head[v];
+
+	while (temp != nullptr) {
+		if (!visited[temp->dest] && temp->dest != v) {
+			visited[temp->dest] = true;
+			isStronglyConnected(temp->dest, visited);
+		}
+		temp = temp->next;
+	}
+}
+
 bool Graph::isStronglyConnected() {
 	bool* visited = new bool[size]{false};
 	for (int i = 0; i < size; i++)
@@ -94,6 +94,19 @@ bool Graph::isStronglyConnected() {
 	return true;
 }
 
+int Graph::hamiltonianCycle(int v) {
+	int* path = new int[size];
+	for (int i = 0; i < size; i++)
+		path[i] = -1;
+	path[0] = v;
+	bool* visited = new bool[size] {false};
+	visited[v] = true;
+	const int res = hamiltonianCycle(v, visited, path, 1);
+	delete[] visited;
+	delete[] path;
+	return res;
+
+}
 
 int Graph::hamiltonianCycle(int v, bool*& visited, int path[], int pos) {
 	if (pos == size) {
@@ -132,20 +145,6 @@ bool Graph::isAcyclic(int i, bool* visited, bool* recStack) {
 	}
 	recStack[i] = false;
 	return false;
-}
-
-int Graph::hamiltonianCycle(int v) {
-	int* path = new int[size];
-	for (int i = 0; i < size; i++)
-		path[i] = -1;
-	path[0] = v;
-	bool* visited = new bool[size]{false};
-	visited[v] = true;
-	const int res = hamiltonianCycle(v, visited, path, 1);
-	delete[] visited;
-	delete[] path;
-	return res;
-
 }
 
 bool Graph::isAcyclic() {
@@ -232,9 +231,9 @@ int testGraph() {
 		case 8:
 			code = graph->isAcyclic();
 			if (code)
-				std::cout << "Graph is acyclic\n";
+				std::cout << "Graph is cyclic\n";
 			else
-				std::cout << "Graph is not acyclic\n";
+				std::cout << "Graph is acyclic\n";
 			break;
 		case 9:
 			std::cout << "Enter starting vertex: ";
@@ -244,6 +243,7 @@ int testGraph() {
 				std::cout << "Graph has hamiltonian cycle\n";
 			else
 				std::cout << "Graph has no hamiltonian cycle\n";
+			break;
 		case 10:
 			delete graph;
 			break;
