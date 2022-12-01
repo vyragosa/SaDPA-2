@@ -71,8 +71,8 @@ int tournament() {
 		knightDir[i] = new int[TABLE_SIZE + 1];
 	}
 
-	move(kingDir, kingMovements);
-	move(knightDir, knightMovements);
+	move(kingDir, MOV_KING);
+	move(knightDir, MOV_KNIGHT);
 	floyd(kingDir);
 	floyd(knightDir);
 	std::string str;
