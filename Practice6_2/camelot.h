@@ -19,4 +19,6 @@ int* setKnightPos(const std::string& str, int& cnt);
 
 int getMinSteps(int** kingDir, int** knightDir, const int kingPos, const int cnt, const int* knightPos);
 
+void print_matrix(int** matrix);
+
 int tournament();

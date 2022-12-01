@@ -75,8 +75,6 @@ int tournament() {
 	move(knightDir, knightMovements);
 	floyd(kingDir);
 	floyd(knightDir);
-	print_matrix(kingDir);
-	print_matrix(knightDir);
 	std::string str;
 	std::cout << "Enter cells: ";
 	std::cin >> str; //D4A3A8H1H8
