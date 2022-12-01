@@ -28,7 +28,7 @@ int setKingPos(const std::string& str) {
 }
 
 int* setKnightPos(const std::string& str, int& cnt) {
-	auto knightPos = new int[TABLE_SIZE];
+	int* knightPos = new int[TABLE_SIZE];
 	for (int i = 2; i < str.length(); i += 2) {
 		knightPos[cnt++] = ('8' - str[i + 1]) * 8 + str[i] - 'A';
 	}
@@ -64,8 +64,8 @@ void print_matrix(int** matrix) {
 }
 
 int tournament() {
-	auto kingDir = new int*[TABLE_SIZE + 1];
-	auto knightDir = new int*[TABLE_SIZE + 1];
+	int** kingDir = new int*[TABLE_SIZE + 1];
+	int** knightDir = new int*[TABLE_SIZE + 1];
 	for (int i = 0; i < TABLE_SIZE + 1; i++) {
 		kingDir[i] = new int[TABLE_SIZE + 1];
 		knightDir[i] = new int[TABLE_SIZE + 1];
