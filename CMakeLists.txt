@@ -18,3 +18,5 @@ add_executable(Practice5_3 "Practice5_3/main.cpp" "Practice5_3/hashTableOperatio
 add_executable(Practice6_1 "Practice6_1/main.cpp" "Practice6_1/Graph.cpp")
 add_executable(Practice6_2 "Practice6_2/main.cpp" "Practice6_2/camelot.cpp")
 add_executable(Practice7 "Practice7/main.cpp" "Practice7/grassHopper.cpp")
+add_executable(Practice8_RLE "Practice8/RLE.cpp")
+add_executable(Practice8_LZ77 "Practice8/LZ77.cpp")

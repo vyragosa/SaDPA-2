@@ -400,6 +400,7 @@ FodyWeavers.xsd
 #Cmake
 out/
 
-#Intellij idea
+#Clion
 .idea/
 cmake-build-debug/
+/cmake-build-debug-coverage/
