@@ -12,7 +12,7 @@ std::string RLE(const std::string &str) {
 			if (count > 1) {
 				result += std::to_string(count);
 			}
-				count = 1;
+			count = 1;
 		}
 	}
 	return result;
