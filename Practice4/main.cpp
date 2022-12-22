@@ -1,5 +1,5 @@
 ﻿#include "PBTree.h"
 
 int main() {
-	testPBTreeM();
+	return testPBTreeM();
 }
